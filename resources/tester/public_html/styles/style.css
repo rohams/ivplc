@@ -1,0 +1,40 @@
+/* Elliot Barer, ebarer [at] mac [dot] com, XX/YY/2011 */
+
+
+/*RESETS*/
+html, body, div, span, object,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, code, em, font, img, strong, var, ul, ol, dl, li,
+fieldset, form, label, caption,
+table, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; outline: 0; background: transparent; }
+html, body { height: 100%; }
+ol, ul { list-style: none; }
+:focus { outline: 0; }
+table { border-collapse: collapse; border-spacing: 0; }
+div { display: block; }
+.clear { clear: both; }
+
+
+/* DEFAULTS */
+html { background: #252525; }
+body { font-family: Helvetica, Arial, Geneva, sans-serif; color: white; }
+a { display: block; color: white; font-style: normal; text-decoration: none; }
+
+
+/* BROWSER */
+#browser { height: 240px; width: 528px; position: relative; top: 50px; margin: 0 auto; overflow: hidden; }
+#browser.closed { height: 40px; }
+
+#browser ul.column { background: #333; height: 240px; float: left; overflow: auto; border-right: 1px solid #252525; }
+#browser.closed ul.column { overflow: hidden; }
+#browser ul.column#manufacturer { width: 200px; }
+#browser ul.column#model { width: 0px; }
+#browser ul.column#model.active { width: 250px; }
+#browser ul.column#year { width: 0px; }
+#browser ul.column#year.active { width: 75px; }
+
+#browser ul.column li { font: 14px/40px Helvetica; color: white; text-indent: 10px; }
+#browser ul.column li:last-child { border: none; }
+#browser ul.column li.selected { background: #555; }
+#browser ul.column li span { background: #003cb5; float: left; height: 40px; width: 40px; text-indent: 0; overflow: hidden; }
+#browser ul.column li span img { display: block; height: 40px; width: 40px; }

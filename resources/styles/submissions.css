@@ -1,0 +1,95 @@
+/* IVPLC 01/2012 */
+
+/* GENERAL FORM */
+form#submit_general fieldset { margin-bottom: 40px; }
+form#submit_general legend { font: bold 14px/18px Helvetica; display: block; margin-bottom: 20px; float: left; }
+form#submit_general label { background: black; height: auto; width: 100px; padding-right: 10px; float: left; clear: both; font: 12px/42px Helvetica; color: white; text-align: right; }
+form#submit_general label span { font-weight: bold; color: white; }
+form#submit_general .group_member, form#submit_general .measurement { float: left; clear: both; margin-bottom: 20px; }
+
+
+/* FORM INPUTS */
+form#submit_general input[type="text"] {
+	background: transparent;
+	width: 300px; margin: 0; padding: 10px; float: left;
+	position: relative; border: 2px solid #666; border-left: none;
+	font: 12px/18px Helvetica; text-shadow: 0 1px 0 white;
+}
+form#submit_general input[type="text"]:focus { border-color: #0d58be; }
+form#submit_general input[type="checkbox"] { float: left; margin: 3px 8px 3px 0; }
+form#submit_general select { float: left; margin: 10px 0 10px 10px; }
+form#submit_general input[type="file"] { float: left; margin: 10px 0 10px 10px; }
+
+form#submit_general input[type="submit"] {
+	background: url(images/form_submit.png) no-repeat;
+	height: 46px; width: 80px; margin: 0 0 0 40px;
+	position: relative; left: 312px; border: none; float: left; clear: both;
+	font: 12px/24px Helvetica; color: #666; text-shadow: 0 1px 0 white; cursor: pointer;
+}
+form#submit_general input[type="submit"]:hover { background-position: -80px 0; }
+form#submit_general input[type="submit"]:active { background-position: -160px 0; }
+
+
+/* FORM TEXT */
+.errors { width: 400px; float: right; }
+.errors p { font: bold 12px/18px Helvetica; color: red; }
+p.note { font-style: italic; color: #999; float: left; clear: both; }
+p#terms { width: 432px; text-align: justify; }
+p#confirm { width: 432px; text-align: justify; float: left; }
+
+
+/* FORM CONTROLS */
+.controls { float: left; }
+.controls a {
+	background: url(images/stepper_buttons.png) no-repeat;
+	height: 33px; width: 32px; float: left; margin-left: 5px;
+	position: relative; top: -8px; text-indent: -9999px;
+}
+.controls a.add { background-position: 0 0; }
+.controls a.add:hover { background-position: -32px 0; }
+.controls a.add:active { background-position: -64px 0; }
+.controls a.remove { background-position: 0 -33px; opacity: 0.25; }
+.controls a.remove:hover { background-position: -32px -33px; }
+.controls a.remove:active { background-position: -64px -33px; }
+
+
+/* INDEX */
+#submit_index ul { margin-bottom: 20px; list-style: inside square; }
+#submit_index form { height: auto; width: 500px; margin: 40px auto; }
+#submit_index label { display: block; margin-bottom: 10px; }
+#submit_index input[type="text"] {
+	background: rgba(0,0,0,0.05);
+	width: 300px; margin: 0; padding: 10px;
+	border: 1px solid #ddd; border-radius: 5px 0 0 5px; -moz-border-radius: 5px 0 0 5px;
+	box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+	font: 16px/24px Helvetica; text-shadow: 0 1px 0 white;
+}
+#submit_index input[type="submit"] {
+	background: url(images/form_buttons.png) no-repeat;
+	height: 46px; width: 80px;
+	position: relative; top: -1px; left: -5px; border: none; 
+	font: 12px/24px Helvetica; color: #666; text-shadow: 0 1px 0 white; cursor: pointer;
+}
+#submit_index input[type="submit"]:hover { background-position: -80px 0; }
+#submit_index input[type="submit"]:active { background-position: -160px 0; }
+
+
+/* CHOOSER */
+#submit_chooser h2 { text-align: center; }
+#submit_chooser #selections { height: auto; width: 850px; margin: 40px auto; overflow: hidden; }
+#submit_chooser #selections a {
+	background: url(images/chooser_buttons.png) no-repeat;
+	display: block; height: 150px; width: 250px; margin-right: 50px; float: left;
+}
+
+#submit_chooser #selections a span.text { display: block; width: 100%; position: relative; top: 20px; font: 12px/24px Helvetica; text-align: center; }
+#submit_chooser #selections a span.icon { background: url(images/chooser_icons.png) no-repeat; display: block; height: 150px; width: 250px; position: relative; top: -10px; }
+
+#submit_chooser #selections a span.icon#publication { background-position: -250px; }
+
+#submit_chooser #selections a:last-child { margin-right: 0; }
+#submit_chooser #selections a:hover { background-position: -250px 0; }
+#submit_chooser #selections a:active { background-position: -500px 0; }
+
+
+

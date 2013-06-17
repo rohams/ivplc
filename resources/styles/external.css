@@ -1,0 +1,41 @@
+/* IVPLC 01/2012 */
+
+
+/* HOME */
+#intro {height: auto; width: 45%; float: left;}
+#car {padding-top: 50px; float: right; }
+
+
+
+/* GROUP */
+#groups #supervisors { height: auto; width: 450px; float: left; }
+#groups #assistants { height: auto; width: 350px; float: right; }
+#groups h2 { line-height: 60px; }
+
+#groups .member { float: left; height: auto; width: 100%; margin-bottom: 40px; }
+
+#groups .member .mask { float: left; width: 75px; height: 75px; overflow: hidden; }
+#groups .member .mask img { height: auto; width: 75px; }
+
+#supervisors .member .info { float: right; width: 360px; }
+#assistants .member .info { float: right; width: 260px; }
+#groups .member .info .details { height: 39px; padding: 18px 0; margin-bottom: 20px; }
+#groups .member .info h3 {  margin-bottom: 0; }
+#groups .member .info p { margin-bottom: 0; text-align: justify; }
+
+
+
+/* PUBLICATIONS */
+#publications a.publication { display: block; height: auto; width: 100%; margin-bottom: 40px; float: left; overflow: hidden; }
+#publications a.publication:nth-child(3n+4) { margin-right: 0; }
+#publications a.publication .icon {
+	background: url(images/publication.png) no-repeat;
+	height: 64px; width: 31px; margin-right: 15px;
+	float: left;
+}
+#publications a.publication h3 { margin-bottom: 5px; }
+#publications a.publication p.affiliation { margin-bottom: 5px; }
+#publications a.publication p.author { margin-bottom: 0; }
+
+#publications a.publication:hover h3 { color: #0d58be; }
+#publications a.publication:hover .icon { background-position: 0 -64px; }

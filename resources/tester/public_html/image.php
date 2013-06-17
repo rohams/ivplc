@@ -1,0 +1,1 @@
+<img src="styles/logos/<?=$manufacturer;?>.png"/>

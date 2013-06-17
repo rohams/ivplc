@@ -1,0 +1,100 @@
+/*Links*/
+a{ color: #000; }
+a:hover, a:active{ cursor: pointer; color: #0d58be; }
+
+/* ADMIN SELECTOR */
+#admin h2 { text-align: center; }
+#admin #selections { height: auto; width: 850px; margin: 40px auto; overflow: hidden; }
+#admin #selections a {
+	background: url(images/chooser_buttons.png) no-repeat;
+	display: block; height: 150px; width: 250px; margin-right: 50px; float: left;
+}
+
+#admin #selections a span.text { display: block; width: 100%; position: relative; top: 20px; font: 12px/24px Helvetica; text-align: center; }
+#admin #selections a span.icon { background: url(images/chooser_icons.png) no-repeat; display: block; height: 150px; width: 250px; position: relative; top: -10px; }
+
+#admin #selections a span.icon#publication { background-position: -250px 0; }
+#admin #selections a span.icon#group { background-position: -500px 0; }
+
+#admin #selections a:last-child { margin-right: 0; }
+#admin #selections a:hover { background-position: -250px 0; }
+#admin #selections a:active { background-position: -500px 0; }
+
+
+/*TABLES*/
+#admin { width: 100%;margin-bottom: 40px;}
+#admin table th, thead{ text-align: center; background-color: #ddd; font: bold 14px/14px Helvetica, sans-serif; }
+#admin table, tr, td, thead, tbody, th{ border: solid 1px #aaa; padding: 10px; font: 14px/14px Helvetica, sans-serif; text-align: center; }
+#admin table img { width: 70px; }
+
+
+
+/*BUTTONS*/
+
+
+	/*Add button*/
+	#add {
+		background: url(images/stepper_buttons.png) no-repeat;
+		height: 33px; width: 32px; float: left; margin-left: 5px;
+		position: relative; top: 30px; left: 250px; text-indent: -9999px;
+	}
+	#add:hover { background-position: -32px 0px; cursor: pointer; }
+	#add:active{ background-position: -64px 0; }
+
+	/*Approve*/
+	#approve input[type="submit"]{
+		background: url(images/options.png) no-repeat;
+		width: 100%; overflow: visible;
+		height: 30px; width: 30px;
+		position: relative; border: none; float: left;
+		font: 12px/24px Helvetica; color: #666; text-shadow: 0 1px 0 white; cursor: pointer; text-indent: -9999px;
+	}
+	#approve input[type="submit"]:hover{ background-position: 0 -30px; }
+	#approve input[type="submit"]:active{ background-position: 0 -60px; }
+
+	/*Delete and Reject Button*/
+	#delete input[type="submit"]{
+		background: url(images/options.png) no-repeat;
+		width: 100%; overflow: visible;
+		height: 30px; width: 30px;
+		position: relative; border: none; margin-left: 5px; float: left;
+		background-position: -30px 0 ;
+		font: 12px/24px Helvetica; color: #666; text-shadow: 0 1px 0 white; cursor: pointer; text-indent: -9999px;
+	}
+	#delete input[type="submit"]:hover{ background-position: -30px -30px; }
+	#delete input[type="submit"]:active{ background-position: -30px -60px; }
+	
+	
+	/*CREATE NEW Member or Manufacturer BUTTON*/
+	#adminform form#add_member input[type="submit"]{
+		background: url(images/form_submit.png) no-repeat;
+		height: 46px; width: 80px; margin: 0 0 10px 0;
+		position: relative; left: 220px; border: none; float: left; clear: both;
+		font: 12px/24px Helvetica; color: #666; text-shadow: 0 1px 0 white; cursor: pointer;
+	}
+	#adminform form#add_member input[type="submit"]:hover{ background-position: -80px 0; }
+	#adminform form#add_member input[type="submit"]:active{ background-position: -160px 0; }
+
+
+/*hidden form*/
+.hidden { display: none; }
+#adminform{ width: 45%; padding-bottom: 10px; margin-left: 200px; }
+#adminform form { font: 12px/30px Helvetica; height: auto; margin: 0 auto; overflow: hidden; clear: both; }
+#adminform form label { height: auto; width: 100px; padding-right: 10px; float: left; clear: both; text-align: right; font: bold 12px/22px Helvetica; }
+#adminform form input[type="password"] {
+	background: transparent;
+	width: 284px; margin: 0; padding: 5px; float: left;
+	position: relative; border: 2px solid #666; 
+}
+#adminform form input[type="text"]{
+	background: transparent;
+	width: 284px; margin: 0; padding: 5px; float: left;
+	position: relative; border: 2px solid #666; 
+}
+#adminform #bio{ display:block; float: left; }
+#adminform form input[type="file"],input[type="radio"] { float: left;}
+
+
+/* ADMIN MEASUREMENTS */
+#admin-measurements table#admin .mask { height: auto; width: 120px; overflow: hidden; }
+#admin-measurements table#admin .mask img { width: 120px; position: relative; top: -10px; left: 0; }

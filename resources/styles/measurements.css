@@ -1,0 +1,41 @@
+/* IVPLC 01/2012 */
+
+
+/* MEASUREMENTS */
+#measurements_index h2 { clear: both; margin: 20px 0; }
+#measurements_index a.vehicles { display: block; height: 200px; width: 150px; margin: 0 10px 10px 0; float: left; border: 1px solid black; }
+#measurements_index a.vehicles .mask { width: 150px; height: 100px; overflow: hidden; margin-bottom: 10px; }
+#measurements_index a.vehicles .mask img { width: 150px; position: relative; top: -10px; left: 0; }
+#measurements_index a.vehicles p { margin-bottom: 0; text-align: center; }
+#measurements_index a.vehicles p.model { font-weight: bold; }
+
+
+/* MEASUREMENT PAGE */
+#measurements_vehicle h1 span { font: 12px/95px Helvetica; float: right; }
+#measurements_vehicle .component {
+	height: auto; min-height: 150px; width: 166px;
+	float: left; margin: 0 21px 21px 0;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+#measurements_vehicle .component:nth-child(5n) { margin-right: 0; border-right: none; }
+
+#measurements_vehicle p.note { float: none; margin-bottom: 40px; }
+#measurements_vehicle .component h3 { margin-bottom: 0; }
+#measurements_vehicle .component h3 a { font: bold 14px/24px Helvetica; }
+#measurements_vehicle .component ul.measurements { padding: 20px;  min-height: 200px;}
+#measurements_vehicle .component ul.measurements li { margin-bottom: 10px; }
+
+
+/* SLIDER */
+#slider{height: 300px;  position: relative; text-align: center;}
+.nivoSlider { position: relative; height: 330px; width: 620px; margin-bottom: 40px; margin-left: 140px; }
+.nivoSlider img { position: absolute; top: 0; left: 0; width: 100%; height: 300px; } 
+.nivoSlider a { 
+	border: 1px solid; position: relative; top: 310px;
+	font: bold 12px Helvetica, san-serif; 
+	padding: 5px;
+	margin-right: 10px;
+}
+.nivo-slice { display: block; height: 100%; position: absolute; z-index: 5; }
+.nivo-box { display: block; position: absolute; z-index: 5; }
