@@ -5,6 +5,9 @@
 	<?php if(validation_errors()) : ?>
 		<div class="errors"><?=validation_errors();?></div>
 	<?php endif; ?>
+                <script>
+			var id = 0;
+		</script>
 	
 	<?=form_open_multipart('submit/vehicle', array('id'=>'submit_general'));?>
 	

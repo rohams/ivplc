@@ -155,7 +155,8 @@ class Vehicles extends CI_Model {
 		$data['revision']=$row['revision']+1;
                 $data['vehicle_id']=$row['vehicle_id'];
 		$query2 = $this->db->insert('vehicles', $data);
-		return $data['revision'];
+                $vehicle_id = $this->db->insert_id();
+		return $vehicle_id;
 	}
 
 	/* ADMIN FUNCTIONS */	
