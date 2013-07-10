@@ -23,32 +23,30 @@ class Administrator extends CI_Controller {
 		$this->load->view('footer', $data);
 	}
 
-	public function admin_measurements($pk_sub_id = null){
+	public function admin_measurements($pk_vehicle_id = null){
 		$data = array(
 			'parent' => 'admin',
 			'page' => 'Measurements admin',
 			'title' => 'Measurements Admin',
 			'admin' => true,
 			'ApproveVehicles' => $this->vehicles->return_vehicles('','0'),
-                        'EditVehicles' => $this->vehicles->return_vehicles('', '2'),
-			'vehicles' => $this->vehicles->return_vehicles()
-                        
+			'vehicles' => $this->vehicles->return_vehicles()			
 		);
 		
 		if($this->input->post()) :
 			$submit = $this->input->post('submit');
-			$pk_sub_id = $this->input->post('pk_sub_id');
+			$pk_vehicle_id = $this->input->post('pk_vehicle_id');
 			$fk_contributor_id = $this->input->post('fk_contributor_id');
 			$manu_name = $this->input->post('manu');
 			
 			switch($submit){
 				case 'Approve':
-					$this->vehicles->approve($pk_sub_id, $fk_contributor_id);
+					$this->vehicles->approve($pk_vehicle_id, $fk_contributor_id);
 					redirect('admin/measurements');
 					break;
 				case 'Reject' :
 				case 'Delete' :
-					$this->vehicles->reject($pk_sub_id);
+					$this->vehicles->reject($pk_vehicle_id);
 					redirect('admin/measurements');
 					break;
 				case 'Add' :
@@ -63,8 +61,8 @@ class Administrator extends CI_Controller {
 			$this->load->view('header', $data);
 			$this->load->view('nav', $data);
 			
-			if($pk_sub_id != null) :
-				$vehicle = $this->vehicles->return_vehicles($pk_sub_id,'0');
+			if($pk_vehicle_id != null) :
+				$vehicle = $this->vehicles->return_vehicles($pk_vehicle_id,'0');
 				$data['vehicle'] = $vehicle[0];
 				$this->load->view('admin/vehicle', $data);
 			else :

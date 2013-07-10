@@ -102,11 +102,9 @@ $(document).ready(function(){
 
 
 /* COMPONENTS & MEASUREMENTS INCR/DECR */
-
 	$compCounter = 3;
 	$measurementCounter = 2;
 	$cellCounter = 1;
-	
 	
 	$('#incrementComponent').click(function(){
 		if($compCounter <= 10){
