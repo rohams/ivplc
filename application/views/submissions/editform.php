@@ -9,7 +9,7 @@
 	<?=form_open_multipart('submit/edit/'.$vehicle['pk_sub_id'], array('id'=>'submit_general'));?>
 	
 		<!-- VEHICLE INFORMATION -->
-		<?=form_fieldset('Edit Vehicle Information');?>
+		<?=form_fieldset('Vehicle Information');?>
 			<?=form_hidden('fk_contributor_id', $contributor);?>
 			
 			<?=form_label('<span>*</span> Manufacturer', 'manufacturer');?>
@@ -33,8 +33,10 @@
 			
 			<div class="group" id="images">
 				<div class="group_member" id="image1">
-					<?=form_label('<span>*</span> Image 1', 'image');?>                                                                                                   
-					<?=form_upload(array('name'=>'image[]'));?>
+					<?=form_label('<span>*</span> Image 1', 'image');?>
+					<?=form_upload(array('name'=>'image[]','value'=>set_value('image[]','image.jpg')));?>
+					<div class="mask">
+					</div>
 				</div>
 			</div>
 		<?=form_fieldset_close();?>
@@ -54,27 +56,13 @@
 
 			
 			<div class="group" id="components">
-                            
-                         <?php if(isset($vehicle['components'])) : ?>
-                            <?php $i=1 ?>
-			    <?php foreach($vehicle['components'] as $component) : ?>
+				<?php for($i = 1; $i <= 2; $i++) :?>
 					<div class="group_member component" id="component<?=$i;?>">
-						<?=form_label('Component ' . $i, 'component_name');?>
-						<?=form_input(array('name'=>'component_name[]', 'maxlength'=>'20', 'value'=>set_value('component_name[]', $component['name'])));?>
-						<?=form_upload(array('name'=>'component[]'));?>
-					</div>
-                                <?php $i++ ?>
-                            <?php endforeach;?>
-                           <?php else : ?>
-                            <?php for($i = 1; $i <= $id+1; $i++) :?>
-					<div class="group_member component" id="component<?=$i;?>">
-						<?=form_label('Component ' . $i, 'component_name');?>
+						<?=form_label('<span>*</span> Component ' . $i, 'component_name');?>
 						<?=form_input(array('name'=>'component_name[]', 'maxlength'=>'20', 'value'=>set_value('component_name[]')));?>
 						<?=form_upload(array('name'=>'component[]'));?>
 					</div>
-			    <?php endfor;?>
-                           <?php endif ?>
-                            
+				<?php endfor;?>
 			</div>
 		<?=form_fieldset_close();?>
 
@@ -84,17 +72,13 @@
 			<p class="note">Please attach the s-parameter files associated between the two referenced points.</p>
 			
 			<div id="measurements">
-                            <?php for($i = 1; $i <= $id+1; $i++) :?>
-				<div class="measurement" id="measurement<?php echo $i ?>">
-                                        <h2 class="component<?php echo $i ?>">Component <?php echo $i ?></h2>
-                                        <?php for($j = $i+1; $j <= $id+2; $j++) :?>
-                                            <div class="reference">                                              
-                                                    <?=form_label('Component ' . $j, 'measurement[]', array('class'=>'component' . $j));?>
-                                                    <?=form_upload(array('name'=>'measurement[]'));?>
-                                            </div>
-                                        <?php endfor;?>
+				<div class="measurement" id="measurement1">
+					<h2 class="component1">Component 1</h2>
+					<div class="reference">
+						<?=form_label('Component 2', 'measurement[]', array('class'=>'component2'));?>
+						<?=form_upload(array('name'=>'measurement[]'));?>
+					</div>
 				</div>
-                            <?php endfor;?>
 			</div>
 		
 		<?=form_fieldset_close();?>
@@ -107,9 +91,9 @@
 			<p id="confirm">
 			<?=form_checkbox('agreement', 'agree', set_value('agreement'));?>
 			I have read and agree to the Terms and Conditions</p>
-			<div id="submitb"><?=form_submit('submit', 'Submit');?></div>
-			<div id="cancelb"><?=form_submit('submit', 'Cancel');?></div>
-                        <br style="clear: left;" />
+			
+			<div><?=form_submit('submit', 'Submit');?>
+			<?=form_submit('submit', 'Cancel');?></div>
 		<?=form_fieldset_close();?>
 
 </div><!-- end of Content // Begin Footer File-->

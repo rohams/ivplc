@@ -30,13 +30,6 @@ form#submit_general input[type="submit"]:hover { background-position: -80px 0; }
 form#submit_general input[type="submit"]:active { background-position: -160px 0; }
 
 
-#submitb {
-    text-align:center;
-}
-
-#cancelb {
-    float: left;
-}
 /* FORM TEXT */
 .errors { width: 400px; float: right; }
 .errors p { font: bold 12px/18px Helvetica; color: red; }

@@ -103,8 +103,8 @@ $(document).ready(function(){
 
 /* COMPONENTS & MEASUREMENTS INCR/DECR */
 
-	$compCounter = 3+id;
-	$measurementCounter = 2+id;
+	$compCounter = 3;
+	$measurementCounter = 2;
 	$cellCounter = 1;
 	
 	
@@ -153,7 +153,6 @@ $(document).ready(function(){
 	
 	$('#decrementComponent').click(function(){
 		if($compCounter > 3){
-                        $('#decrementComponent').stop().animate({'opacity':'1'}).css({'cursor':'pointer'});
 			$compCounter--;
 			$measurementCounter--;
 			
@@ -168,11 +167,14 @@ $(document).ready(function(){
 			$('.measurement').each(function(){
 				$(this).children('.reference').last().remove();
 			});
-                }
-		else{
-                     $('#decrementComponent').stop().animate({'opacity':'0.25'}).css({'cursor':'default'});
-                }
-        
+			
+			/*INCR & DECR*/
+			if($compCounter <= 3){
+				$('#decrementComponent').stop().animate({'opacity':'0.25'}).css({'cursor':'default'});
+			} else {
+				$('#decrementComponent').stop().animate({'opacity':'1'}).css({'cursor':'pointer'});
+			}
+		}
 		
 		return false;
 	});
