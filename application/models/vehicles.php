@@ -42,6 +42,33 @@ class Vehicles extends CI_Model {
 	}
 	
 	
+	function return_user_vehicles($contributor = null){
+		$query = $this->db->where('fk_contributor_id', $contributor);
+		$query = $this->db->get('vehicles');
+		$vehicles = array();
+		
+		if( $query->num_rows() > 0 ) :   
+			foreach( $query->result_array() as $vehicle ) :
+				$car['pk_vehicle_id'] = $vehicle['pk_vehicle_id'];
+				$car['manufacturer'] = $this->manufacturers->return_vehicle_manufacturer($vehicle['fk_manufacturer_id']);
+				$car['model'] = $vehicle['model'];
+				$car['year'] = $vehicle['year'];
+				$car['images'] = $this->images->return_vehicle_images($vehicle['pk_vehicle_id']);
+				$car['components'] = $this->components->return_vehicle_components_indexed($vehicle['pk_vehicle_id']);
+				$car['measurements'] = $this->measures->return_vehicle_measurements($vehicle['pk_vehicle_id']);
+				$car['contributor'] = $this->contributors->return_contributor($vehicle['fk_contributor_id']);
+				
+				$vehicles[] = $car;
+			endforeach;
+			
+			return $vehicles;
+		endif;
+
+
+	}
+	
+	
+	
 	/* ADD FUNCTIONS */
 	function create_vehicle($post){		  
 		$data = array(
