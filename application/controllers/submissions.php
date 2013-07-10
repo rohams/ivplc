@@ -194,79 +194,22 @@ class Submissions extends CI_Controller {
 		
 
 
-	public function edit_list(){
+	public function edit_vehicle(){
 	
-			
-		$contributor= $this->session->userdata('contributor');
-		$data = array(
+	
+	$contributor= $this->session->userdata('contributor');
+	$data = array(
 			'parent' => 'submit',
 			'UserVehicles' => $this->vehicles->return_user_vehicles($contributor)
 			
-			);
-	
-		if($this->input->post()) :
-			$submit = $this->input->post('submit');
-			$pk_vehicle_id = $this->input->post('pk_vehicle_id');
-			$fk_contributor_id = $this->input->post('fk_contributor_id');
-			
-			switch($submit){
-				case 'Edit':
-				
-					redirect('submit/edit/'.$pk_vehicle_id);
+		);
 
-					break;
-				default :
-					return false;
-			}
-		
-		else:
+
 		$this->load->view('header', $data);
 		$this->load->view('nav', $data);
 		$this->load->view('submissions/edit',$data);	
 		$this->load->view('footer', $data);
 		
-		endif;
-		
 	}
-	
-	public function edit_vehicle($pk_vehicle_id = null){
-	
-			
-		$data = array(
-			'parent' => 'submit',
-			'vehicle' => $this->vehicles->return_vehicle($pk_vehicle_id),
-			'page' => 'vehicle',
-			'title' => 'Edit Vehicle',
-			'contributor' => $this->session->userdata('contributor'),
-			'manufacturers' => $this->manufacturers->return_manufacturers(),
-			'file' => $this->session->userdata('file')
-			);
-	
-		if($this->input->post()) :
-			$submit = $this->input->post('submit');
-			
-			switch($submit){
-				case 'submit':
-					//Edit function in model
-					break;
-					
-				case 'cancel':
-					redirect('submit/edit/');
-					break;
-					
-				default :
-					return false;
-			}
-		
-		else:
-		$this->load->view('header', $data);
-		$this->load->view('nav', $data);
-		$this->load->view('submissions/editform',$data);	
-		$this->load->view('footer', $data);
-		
-		endif;
-		
-	}
-
 }
 
