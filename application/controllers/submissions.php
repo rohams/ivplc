@@ -205,79 +205,79 @@ class Submissions extends CI_Controller {
 			);
 	
 		if($this->input->post()) :
-                    $sub_id = $this->input->post('pk_sub_id');
-                    redirect('submit/edit/'.$sub_id);
+			$submit = $this->input->post('submit');
+			$sub_id = $this->input->post('pk_sub_id');
+			//$fk_contributor_id = $this->input->post('fk_contributor_id');
+			
+			switch($submit){
+				case 'Edit':
+					redirect('submit/edit/'.$sub_id);
+
+					break;
+				default :
+					return false;
+			}
 		
 		else:
-                    $this->load->view('header', $data);
-                    $this->load->view('nav', $data);
-                    $this->load->view('submissions/edit',$data);	
-                    $this->load->view('footer', $data);
+		$this->load->view('header', $data);
+		$this->load->view('nav', $data);
+		$this->load->view('submissions/edit',$data);	
+		$this->load->view('footer', $data);
 		
 		endif;
 		
 	}
 	
-	public function submit_edit_vehicle($pk_sub_id = null){
-	        $this->form_validation->set_rules('manufacturer', 'Manufacturer', 'required');
-		$this->form_validation->set_rules('model', 'Model', 'required');
-		$this->form_validation->set_rules('year', 'Year', 'required|min_length[4]|numeric');
-		//$this->form_validation->set_rules('component_name[]', 'Component Name', 'required');
+	public function edit_vehicle($pk_sub_id = null){
+	
+
 		$this->form_validation->set_rules('agreement', 'Agreement', 'required');
+
 			
 		$data = array(
 			'parent' => 'submit',
 			'vehicle' => $this->vehicles->return_vehicle($pk_sub_id),
 			'page' => 'vehicle',
 			'title' => 'Edit Vehicle',
+			'id'=>0,
 			'contributor' => $this->session->userdata('contributor'),
 			'manufacturers' => $this->manufacturers->return_manufacturers(),
 			'file' => $this->session->userdata('file')
 			);
-                $data['id']=count($data['vehicle']['components'])-2;
-                if($this->input->post()) :
-                        $submit = $this->input->post('submit');
-                        $post = $this->input->post();
-                        $post['sub_id']=$pk_sub_id;  
-                        switch($submit){
+	
+		if($this->input->post()) :
+			$submit = $this->input->post('submit');
+			$post = $this->input->post();
+                        $post['sub_id']=$pk_sub_id;				
+		/*	$img = $this->file_parser->images_parser();
+			$cmp = $this->file_parser->components_parser();
+			$msr = $this->file_parser->measurements_parser();			
+			$images = $this->images->upload_images($vehicle, $img);
+			$components = $this->components->upload_components($vehicle, $cmp, $post['component_name']);
+			$measurements = $this->measures->upload_measurements($vehicle, $msr, $components);
+		*/	
+			switch($submit){
 				case 'Submit':
-                                    if($this->form_validation->run()==FALSE) :
-                                        $this->load->view('header', $data);
-                                        $this->load->view('nav', $data);
-                                        $this->load->view('submissions/editform',$data);		
-                                        $this->load->view('footer', $data);
-                                    else:
-                                        $vehicle = $this->vehicles->edit_this_vehicle($post);
-                                    	$img = $this->file_parser->images_parser();
-					$cmp = $this->file_parser->components_parser();
-					$msr = $this->file_parser->measurements_parser();
+					//Edit function in model
+			        $vehicle = $this->vehicles->edit_this_vehicle($post);	
+					redirect('submit/edit/');
+					break;
 					
-					$images = $this->images->upload_images($vehicle, $img);
-					$components = $this->components->upload_components($vehicle, $cmp, $post['component_name']);
-					$measurements = $this->measures->upload_measurements($vehicle, $msr, $components);
-                                        redirect('submit/edit/');
-                                    endif;
+				case 'Cancel':
+					redirect('submit/edit/');
 					break;
-				case 'Cancel' :
-                                        redirect('submit/edit/');
-					break;
+					
 				default :
 					return false;
 			}
-                /*	$img = $this->file_parser->images_parser();
-                        $cmp = $this->file_parser->components_parser();
-                        $msr = $this->file_parser->measurements_parser();			
-                        $images = $this->images->upload_images($vehicle, $img);
-                        $components = $this->components->upload_components($vehicle, $cmp, $post['component_name']);
-                        $measurements = $this->measures->upload_measurements($vehicle, $msr, $components);
-                */	
-                else:
-                    $this->load->view('header', $data);
-                    $this->load->view('nav', $data);
-                    $this->load->view('submissions/editform',$data);	
-                    $this->load->view('footer', $data);
-                    
-                endif;
+		
+		else:
+		$this->load->view('header', $data);
+		$this->load->view('nav', $data);
+		$this->load->view('submissions/editform',$data);	
+		$this->load->view('footer', $data);
+		
+		endif;
 		
 	}
 
