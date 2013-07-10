@@ -11,8 +11,9 @@ class Vehicles extends CI_Model {
 	function return_vehicles($pk_sub_id = null, $view = null){		
 		if($pk_sub_id != null) :
 			$query = $this->db->where('pk_sub_id', $pk_sub_id);
+		endif;
 
-		elseif($view == null) :
+		if($view == null) :
 			$query = $this->db->where('view', '1');
                 elseif ($view == 2) :
                         $query = $this->db->where('view', '2');
