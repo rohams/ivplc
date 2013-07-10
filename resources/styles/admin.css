@@ -100,5 +100,5 @@ a:hover, a:active{ cursor: pointer; color: #0d58be; }
 #admin-measurements table#admin .mask img { width: 120px; position: relative; top: -10px; left: 0; }
 
 /* USER EDIT MEASUREMENTS */
-#user-edit-measurements table#user .mask { height: auto; width: 120px; overflow: hidden; }
-#user-edit-measurements table#user .mask img { width: 120px; position: relative; top: -10px; left: 0; }
+#user-edit-measurements table#admin .mask { height: auto; width: 120px; overflow: hidden; }
+#user-edit-measurements table#admin .mask img { width: 120px; position: relative; top: -10px; left: 0; }
