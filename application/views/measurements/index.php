@@ -7,7 +7,7 @@
 
 		<?php foreach($vehicles as $vehicle) : ?>		
 			<?php if($vehicle['manufacturer'] == $manufacturer) : ?>
-				<a class="vehicles ext" href="<?=site_url();?>measurements/<?=$vehicle['pk_vehicle_id'];?>">
+				<a class="vehicles ext" href="<?=site_url();?>measurements/<?=$vehicle['pk_sub_id'];?>">
 					<div class="mask">
 						<?php if($vehicle['images'][0] != '') : ?>
 							<img class="hero" src="<?=base_url() . $vehicle['images'][0];?>"/>

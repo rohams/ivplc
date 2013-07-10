@@ -3,6 +3,50 @@
 
 	<!-- Review Submissions -->
 	<h2>Edited Vehicle Submissions</h2>
+        <?php if(isset($EditVehicles) && $EditVehicles[0] != '') : ?>	
+		<table id="admin">
+			<thead><tr>
+				<th></th>
+				<th>Manufacturer</th>
+				<th>Model</th>
+				<th>Year</th>
+				<th>Contributor</th>
+                                <td>Submission Date & Time</td>
+				<td>Options</td>
+			</tr></thead>
+	
+			<tbody>		
+				<?php foreach($EditVehicles as $vehicle) : ?>
+					<tr>
+						<td>
+							<div class="mask">
+								<a class="ext" href="<?=site_url();?>admin/measurements/<?=$vehicle['pk_sub_id'];?>">
+									<img class="hero" src="<?=base_url() . $vehicle['images'][0];?>"/>
+								</a>
+							</div>
+						</td>
+						<td><?=$vehicle['manufacturer'];?></td>
+						<td><?=$vehicle['model'];?></td>
+						<td><?=$vehicle['year'];?></td>
+						<td><a href="mailto: <?=$vehicle['contributor']['email'];?>"><?=$vehicle['contributor']['first_name'] . ' ' . $vehicle['contributor']['last_name'];?></a></td>
+                                                <td><?=$vehicle['submitted'];?></td>
+						<td>
+							<?=form_open('admin/measurements');?>
+								<?=form_hidden('pk_sub_id', $vehicle['pk_sub_id']);?>
+								<?=form_hidden('fk_contributor_id', $vehicle['contributor']['pk_contributor_id']);?>
+								<div id="approve"><?=form_submit('submit', 'Approve');?></div>
+								<div id="delete"><?=form_submit('submit', 'Reject');?></div>
+							<?=form_close();?>
+						</td>
+					</tr>
+				<?php endforeach;?>		
+			</tbody>
+		</table>
+	<?php else : ?>
+		<p>Nothing awaiting approval.</p>
+	<?php endif; ?>
+	
+	
 	<h2>New Vehicle Submissions</h2>
 	<?php if(isset($ApproveVehicles) && $ApproveVehicles[0] != '') : ?>	
 		<table id="admin">
@@ -12,6 +56,7 @@
 				<th>Model</th>
 				<th>Year</th>
 				<th>Contributor</th>
+                                <td>Submission Date & Time</td>
 				<td>Options</td>
 			</tr></thead>
 	
@@ -20,7 +65,7 @@
 					<tr>
 						<td>
 							<div class="mask">
-								<a class="ext" href="<?=site_url();?>admin/measurements/<?=$vehicle['pk_vehicle_id'];?>">
+								<a class="ext" href="<?=site_url();?>admin/measurements/<?=$vehicle['pk_sub_id'];?>">
 									<img class="hero" src="<?=base_url() . $vehicle['images'][0];?>"/>
 								</a>
 							</div>
@@ -29,9 +74,10 @@
 						<td><?=$vehicle['model'];?></td>
 						<td><?=$vehicle['year'];?></td>
 						<td><a href="mailto: <?=$vehicle['contributor']['email'];?>"><?=$vehicle['contributor']['first_name'] . ' ' . $vehicle['contributor']['last_name'];?></a></td>
+                                                <td><?=$vehicle['submitted'];?></td>
 						<td>
 							<?=form_open('admin/measurements');?>
-								<?=form_hidden('pk_vehicle_id', $vehicle['pk_vehicle_id']);?>
+								<?=form_hidden('pk_sub_id', $vehicle['pk_sub_id']);?>
 								<?=form_hidden('fk_contributor_id', $vehicle['contributor']['pk_contributor_id']);?>
 								<div id="approve"><?=form_submit('submit', 'Approve');?></div>
 								<div id="delete"><?=form_submit('submit', 'Reject');?></div>
@@ -64,7 +110,7 @@
 					<tr>
 						<td>
 							<div class="mask">
-								<a class="ext" href="<?=site_url();?>measurements/<?=$vehicle['pk_vehicle_id'];?>">
+								<a class="ext" href="<?=site_url();?>measurements/<?=$vehicle['pk_sub_id'];?>">
 									<img class="hero" src="<?=base_url() . $vehicle['images'][0];?>"/>
 								</a>
 							</div>
@@ -75,7 +121,7 @@
 						<td><a href="mailto: <?=$vehicle['contributor']['email'];?>"><?=$vehicle['contributor']['first_name'] . ' ' . $vehicle['contributor']['last_name'];?></a></td>
 						<td>
 							<?=form_open('admin/measurements');?>
-								<?=form_hidden('pk_vehicle_id', $vehicle['pk_vehicle_id']);?>
+								<?=form_hidden('pk_sub_id', $vehicle['pk_sub_id']);?>
 								<div id="delete"><?=form_submit('submit', 'Delete');?></div>
 							<?=form_close();?>
 						</td>
