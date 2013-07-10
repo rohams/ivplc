@@ -6,7 +6,7 @@
 		<div class="errors"><?=validation_errors();?></div>
 	<?php endif; ?>
 	
-	<?=form_open_multipart('submit/edit/'.$vehicle['pk_sub_id'], array('id'=>'submit_general'));?>
+	<?=form_open_multipart('submit/vehicle', array('id'=>'submit_general'));?>
 	
 		<!-- VEHICLE INFORMATION -->
 		<?=form_fieldset('Vehicle Information');?>
@@ -50,10 +50,6 @@
 			</div>
 						
 			<p class="note">Please provide the names of each component, and attach any files associated with that singular point (ie: noise function file).</p>
-			<script>
-				var id = <?php echo $id; ?>;
-			</script>
-
 			
 			<div class="group" id="components">
 				<?php for($i = 1; $i <= 2; $i++) :?>
@@ -92,8 +88,7 @@
 			<?=form_checkbox('agreement', 'agree', set_value('agreement'));?>
 			I have read and agree to the Terms and Conditions</p>
 			
-			<div><?=form_submit('submit', 'Submit');?>
-			<?=form_submit('submit', 'Cancel');?></div>
+			<?=form_submit('submit', 'Submit');?>
 		<?=form_fieldset_close();?>
 
 </div><!-- end of Content // Begin Footer File-->

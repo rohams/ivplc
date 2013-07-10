@@ -6,7 +6,7 @@ class Images extends CI_Model {
         parent::__construct();
     }
     
-    function upload_images($fk_sub_id, $images){    
+    function upload_images($fk_vehicle_id, $images){    
 		$config = array(
 			'upload_path' => './uploads/car_images/',
 			'allowed_types' => 'gif|jpg|png',
@@ -17,7 +17,7 @@ class Images extends CI_Model {
 	    $_FILES = $images;
 	    
 	    for($i = 0; $i < count($images); $i++) :
-			$config['file_name'] = $fk_sub_id . '_image_'.$i;
+			$config['file_name'] = $fk_vehicle_id . '_image_'.$i;
 			$this->upload->initialize($config); 
 			$this->upload->do_upload($i);
 		
@@ -35,7 +35,7 @@ class Images extends CI_Model {
 			$this->image_lib->resize();
 			
 			$data = array(
-				'fk_sub_id' => $fk_sub_id,
+				'fk_vehicle_id' => $fk_vehicle_id,
 				'url' => str_replace('/ivplc', '', $relative_url)
 			);
 			
@@ -43,8 +43,8 @@ class Images extends CI_Model {
 		endfor;
     }  
 
-	function return_vehicle_images($fk_sub_id){
-		$query = $this->db->get_where('images', array('fk_sub_id' => $fk_sub_id));
+	function return_vehicle_images($fk_vehicle_id){
+		$query = $this->db->get_where('images', array('fk_vehicle_id' => $fk_vehicle_id));
 		$images = array();
 
 		if( $query->num_rows() > 0 ) :   
