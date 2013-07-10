@@ -6,7 +6,7 @@ class Measurements extends CI_Controller {
 	    parent::__construct();
 	}
 	
-	public function index($pk_vehicle_id = null){
+	public function index($pk_sub_id = null){
 		$data = array(
 			'parent' => 'measurements',
 			'page' => 'measurements',
@@ -17,8 +17,8 @@ class Measurements extends CI_Controller {
 		$this->load->view('header', $data);
 		$this->load->view('nav', $data);
 		
-		if($pk_vehicle_id != null) :
-			$vehicle = $this->vehicles->return_vehicles($pk_vehicle_id);
+		if($pk_sub_id != null) :
+			$vehicle = $this->vehicles->return_vehicles($pk_sub_id);
 			$data['vehicle'] = $vehicle[0];
 			$this->load->view('measurements/vehicle', $data);
 		else :

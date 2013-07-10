@@ -29,8 +29,8 @@
 						<td><?=$vehicle['submitted'];?></td>
 						<td>
 							<?=form_open('submit/edit');?>
-								<?=form_hidden('pk_vehicle_id', $vehicle['pk_vehicle_id']);?>
-								<?=form_hidden('fk_contributor_id', $vehicle['contributor']['pk_contributor_id']);?>
+								<?=form_hidden('pk_sub_id', $vehicle['pk_sub_id']);?>
+								<?=form_hidden('fk_contributor_id', $vehicle['contributor']);?>
 								<div id="approve"><?=form_submit('submit', 'Edit');?></div>
 							<?=form_close();?>
 						</td>
