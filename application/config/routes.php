@@ -54,7 +54,6 @@ $route['submit/personal'] = "submissions/submit_personal";
 $route['submit/vehicle'] = "submissions/submit_vehicle";
 $route['submit/publication'] = "submissions/submit_publication";
 $route['submit/chooser'] = "submissions/submit_chooser";
-$route['submit/edit'] = "submissions/edit_vehicle";
 $route['submit/loading'] = "submissions/submit_loading";
 
 $route['admin'] = "administrator/index";
