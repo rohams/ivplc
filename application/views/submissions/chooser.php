@@ -1,12 +1,12 @@
 <div class="content" id="submit_chooser">
 
-	<h1 class="title">Submit Chooser</h1>
+	<h1 class="title">Menu</h1>
 
 	<?php if(isset($message) && $message != '') : ?>
 		<h2><?=$message;?></h2>
 	<?php else : ?>
 		<h2>Welcome back, <?=$name;?>!</h2>
-		<h2>What would you like to submit?</h2>
+		<h2>What would you like to do?</h2>
 	<?php endif; ?>
 
 	<div id="selections">
