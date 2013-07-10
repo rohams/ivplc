@@ -135,7 +135,7 @@
 	
 	<!-- Old Vehicle Submissions-->
 	<h2>Obsolete Vehicle Submissions</h2>
-        <?php if($ObsoleteVehicles[0] != '') : ?>	
+        <?php if(isset($ObsoleteVehicles) && $ObsoleteVehicles[0] != '') : ?>	
 		<table id="admin">
 			<thead><tr>
 				<th></th>
