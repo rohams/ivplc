@@ -134,50 +134,6 @@
 	<?php endif; ?>
 	
 	<!-- Old Vehicle Submissions-->
-	<h2>Obsolete Vehicle Submissions</h2>
-        <?php if($ObsoleteVehicles[0] != '') : ?>	
-		<table id="admin">
-			<thead><tr>
-				<th></th>
-				<th>Manufacturer</th>
-				<th>Model</th>
-				<th>Year</th>
-				<th>Contributor</th>
-                                <td>Revision</td>
-				<td>Options</td>
-			</tr></thead>
-	
-			<tbody>		
-				<?php foreach($ObsoleteVehicles as $vehicle) : ?>
-					<tr>
-						<td>
-							<div class="mask">
-								<a class="ext" href="<?=site_url();?>admin/measurements/<?=$vehicle['pk_sub_id'];?>">
-									<img class="hero" src="<?=base_url() . $vehicle['images'][0];?>"/>
-								</a>
-							</div>
-						</td>
-						<td><?=$vehicle['manufacturer'];?></td>
-						<td><?=$vehicle['model'];?></td>
-						<td><?=$vehicle['year'];?></td>
-						<td><a href="mailto: <?=$vehicle['contributor']['email'];?>"><?=$vehicle['contributor']['first_name'] . ' ' . $vehicle['contributor']['last_name'];?></a></td>
-                                                <td><?=$vehicle['revision'];?></td>
-						<td>
-							<?=form_open('admin/measurements');?>
-								<?=form_hidden('pk_sub_id', $vehicle['pk_sub_id']);?>
-								<?=form_hidden('fk_contributor_id', $vehicle['contributor']['pk_contributor_id']);?>
-								<div id="approve"><?=form_submit('submit', 'Approve');?></div>
-								<div id="delete"><?=form_submit('submit', 'Reject');?></div>
-							<?=form_close();?>
-						</td>
-					</tr>
-				<?php endforeach;?>		
-			</tbody>
-		</table>
-	<?php else : ?>
-		<p>Not Available.</p>
-	<?php endif; ?>
-	
 	
 	<!-- Add new manufacturers -->
 	<h2>Add New Manufacturer</h2>

@@ -15,10 +15,9 @@ class Vehicles extends CI_Model {
 
 		if($view == null) :
 			$query = $this->db->where('view', '1');
+           
                 elseif ($view == 2) :
                         $query = $this->db->where('view', '2');
-                elseif ($view == 3) :
-                        $query = $this->db->where('view', '3');
                 else :
 			$query = $this->db->where('view', '0');
 		endif;
@@ -34,7 +33,6 @@ class Vehicles extends CI_Model {
 				$car['model'] = $vehicle['model'];
 				$car['year'] = $vehicle['year'];
                                 $car['submitted'] = $vehicle['submitted'];
-                                $car['revision'] = $vehicle['revision'];
 				$car['images'] = $this->images->return_vehicle_images($vehicle['pk_sub_id']);
 				$car['components'] = $this->components->return_vehicle_components_indexed($vehicle['pk_sub_id']);
 				$car['measurements'] = $this->measures->return_vehicle_measurements($vehicle['pk_sub_id']);
@@ -166,15 +164,7 @@ class Vehicles extends CI_Model {
 	
     
     function approve($pk_sub_id, $fk_contributor_id){
-        $query = $this->db->where('pk_sub_id' , $pk_sub_id);
-        $query = $this->db->select('vehicle_id');
-        $query = $this->db->get('vehicles');
-        $row = $query->row_array();
-        $v_id= $row['vehicle_id'];
-        $query = $query = $this->db->where('vehicle_id' , $v_id);
-    	$query = $this->db->update('vehicles', array('view'=>'3'));
-        
-        $query = $this->db->where('pk_sub_id' , $pk_sub_id);
+    	$query = $this->db->where('pk_sub_id' , $pk_sub_id);
     	$query = $this->db->update('vehicles', array('view'=>'1'));
 
     	$query = $this->db->where('pk_contributor_id' , $fk_contributor_id);

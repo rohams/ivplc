@@ -31,7 +31,6 @@ class Administrator extends CI_Controller {
 			'admin' => true,
 			'ApproveVehicles' => $this->vehicles->return_vehicles('','0'),
                         'EditVehicles' => $this->vehicles->return_vehicles('', '2'),
-                        'ObsoleteVehicles' => $this->vehicles->return_vehicles('','3'),
 			'vehicles' => $this->vehicles->return_vehicles()
                         
 		);
