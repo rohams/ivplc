@@ -35,10 +35,8 @@ form#submit_general input[type="submit"]:active { background-position: -160px 0;
 }
 
 #cancelb {
-    position: relative;
-    float:left;
+    float: left;
 }
-
 /* FORM TEXT */
 .errors { width: 400px; float: right; }
 .errors p { font: bold 12px/18px Helvetica; color: red; }
