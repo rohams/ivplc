@@ -10,9 +10,9 @@
 	<?php endif; ?>
 
 	<div id="selections">
-		<a id="vehicle" href="<?=site_url();?>submit/edit">
+		<a id="edit" href="<?=site_url();?>submit/edit">
 			<span class="text">Edit Previous Submissions</span>
-			<span class="icon" id="vehicle"></span>
+			<span class="icon" id="edit"></span>
 		</a>
 		<a id="vehicle" href="<?=site_url();?>submit/vehicle">
 			<span class="text">Submit New Vehicle</span>
