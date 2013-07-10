@@ -94,13 +94,7 @@ p#confirm { width: 432px; text-align: justify; float: left; }
 #submit_chooser #selections a span.text { display: block; width: 100%; position: relative; top: 20px; font: 12px/24px Helvetica; text-align: center; }
 #submit_chooser #selections a span.icon { background: url(images/chooser_icons.png) no-repeat; display: block; height: 150px; width: 250px; position: relative; top: -10px; }
 
-#submit_chooser #selections a span.icon#publication { 
-        background: url(images/chooser_icons.png) no-repeat; display: block; height: 150px; width: 250px; position: relative; top: -10px;
-        background-position: -250px; }
-
-#submit_chooser #selections a span.icon#edit {
-        background: url(images/chooser_icons2.png) no-repeat; display: block; height: 150px; width: 250px; position: relative; top: -10px;
-        background-position: 0px;}
+#submit_chooser #selections a span.icon#publication { background-position: -250px; }
 
 #submit_chooser #selections a:last-child { margin-right: 0; }
 #submit_chooser #selections a:hover { background-position: -250px 0; }
