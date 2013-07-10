@@ -2,7 +2,6 @@
 	<h1 class="title">Measurements Requiring Approval</h1>
 
 	<!-- Review Submissions -->
-	<h2>Edited Vehicle Submissions</h2>
 	<h2>New Vehicle Submissions</h2>
 	<?php if(isset($ApproveVehicles) && $ApproveVehicles[0] != '') : ?>	
 		<table id="admin">
@@ -86,8 +85,6 @@
 	<?php else : ?>
 		<p>No vehicles approved.</p>
 	<?php endif; ?>
-	
-	<!-- Old Vehicle Submissions-->
 	
 	<!-- Add new manufacturers -->
 	<h2>Add New Manufacturer</h2>

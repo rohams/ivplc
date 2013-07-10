@@ -41,38 +41,9 @@ class Vehicles extends CI_Model {
 		endif;
 	}
 	
-	function return_vehicle($pk_vehicle_id = null){		
-		if($pk_vehicle_id != null) :
-			$query = $this->db->where('pk_vehicle_id', $pk_vehicle_id);
-		endif;
-		$query = $this->db->get('vehicles');
-		if ($query->num_rows() == 1 ): 
-			$vehicle=$query->row_array(); 		
-			$car['pk_vehicle_id'] = $vehicle['pk_vehicle_id'];
-			$car['manufacturer'] = $vehicle['fk_manufacturer_id'];
-			$car['model'] = $vehicle['model'];
-			$car['year'] = $vehicle['year'];
-			$car['images'] = $this->images->return_vehicle_images($vehicle['pk_vehicle_id']);
-			$car['components'] = $this->components->return_vehicle_components_indexed($vehicle['pk_vehicle_id']);
-			$car['measurements'] = $this->measures->return_vehicle_measurements($vehicle['pk_vehicle_id']);
-			$car['contributor'] = $this->contributors->return_contributor($vehicle['fk_contributor_id']);
-			return $car;
-		
-		else:
-		
-			return false;
-		
-		endif;
-		
-	}
-
-	
-	
-	
 	
 	function return_user_vehicles($contributor = null){
 		$query = $this->db->where('fk_contributor_id', $contributor);
-		$query = $this->db->order_by('submitted', 'desc');
 		$query = $this->db->get('vehicles');
 		$vehicles = array();
 		
@@ -82,7 +53,6 @@ class Vehicles extends CI_Model {
 				$car['manufacturer'] = $this->manufacturers->return_vehicle_manufacturer($vehicle['fk_manufacturer_id']);
 				$car['model'] = $vehicle['model'];
 				$car['year'] = $vehicle['year'];
-				$car['submitted'] = $vehicle['submitted'];
 				$car['images'] = $this->images->return_vehicle_images($vehicle['pk_vehicle_id']);
 				$car['components'] = $this->components->return_vehicle_components_indexed($vehicle['pk_vehicle_id']);
 				$car['measurements'] = $this->measures->return_vehicle_measurements($vehicle['pk_vehicle_id']);
@@ -134,9 +104,5 @@ class Vehicles extends CI_Model {
     function reject($pk_vehicle_id){
     	$query = $this->db->delete('vehicles', array('pk_vehicle_id'=>$pk_vehicle_id));
     }
-    
-    //function edit($pk_vehicle_id,, $fk_contributor_id){
-    //	$query = $this->db->delete('vehicles', array('pk_vehicle_id'=>$pk_vehicle_id));
-   // }
 
 }
