@@ -101,7 +101,7 @@ $(document).ready(function(){
 	});
 
 
-/* COMPONENTS & MEASUREMENTS INCR/DECR (EDIT PAGE)*/ 
+/* COMPONENTS & MEASUREMENTS INCR/DECR */
 
 	$compCounter = 3+id;
 	$measurementCounter = 2+id;
