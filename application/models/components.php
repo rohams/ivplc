@@ -21,19 +21,18 @@ class Components extends CI_Model {
 			$config['file_name'] = $fk_sub_id . '_noise_'. $i;
 			$this->upload->initialize($config); 
 			
-//			if($_FILES[$i]['error'] != 4) :
+			if($_FILES[$i]['error'] != 4) :
 				$this->upload->do_upload($i);
 			
 				$upload_data = $this->upload->data();
 				$relative_url = str_replace($_SERVER['DOCUMENT_ROOT'], '', $upload_data['full_path']);
-//			else :
-//				$relative_url = null;
-//			endif;
+			else :
+				$relative_url = null;
+			endif;
 			
 			$data = array(
 				'fk_sub_id' => $fk_sub_id,
 				'name' => $post[$i],
-                                'file_name' => $upload_data['file_name'],
 				'url' => str_replace('/ivplc', '', $relative_url)
 			);
 			
