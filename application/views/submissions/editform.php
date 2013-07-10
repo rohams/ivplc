@@ -61,6 +61,9 @@
 					<div class="group_member component" id="component<?=$i;?>">
 						<?=form_label('Component ' . $i, 'component_name');?>
 						<?=form_input(array('name'=>'component_name[]', 'maxlength'=>'20', 'value'=>set_value('component_name[]', $component['name'])));?>
+                                                <?php if($component['url'] != NULL) : ?>
+                                                    <a href="<?=base_url() . substr($component['url'],1);?>"><?=$component['url'];?></a>
+                                                <?php endif;?>
 						<?=form_upload(array('name'=>'component[]'));?>
 					</div>
                                 <?php $i++ ?>
