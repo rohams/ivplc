@@ -98,3 +98,7 @@ a:hover, a:active{ cursor: pointer; color: #0d58be; }
 /* ADMIN MEASUREMENTS */
 #admin-measurements table#admin .mask { height: auto; width: 120px; overflow: hidden; }
 #admin-measurements table#admin .mask img { width: 120px; position: relative; top: -10px; left: 0; }
+
+/* USER EDIT MEASUREMENTS */
+#user-edit-measurements table#admin .mask { height: auto; width: 120px; overflow: hidden; }
+#user-edit-measurements table#admin .mask img { width: 120px; position: relative; top: -10px; left: 0; }

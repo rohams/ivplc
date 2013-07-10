@@ -192,4 +192,24 @@ class Submissions extends CI_Controller {
 		endif;
 	}
 		
+
+
+	public function edit_vehicle(){
+	
+	
+	$contributor= $this->session->userdata('contributor');
+	$data = array(
+			'parent' => 'submit',
+			'UserVehicles' => $this->vehicles->return_user_vehicles($contributor)
+			
+		);
+
+
+		$this->load->view('header', $data);
+		$this->load->view('nav', $data);
+		$this->load->view('submissions/edit',$data);	
+		$this->load->view('footer', $data);
+		
+	}
 }
+
