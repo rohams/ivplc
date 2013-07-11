@@ -38,9 +38,9 @@ class Components extends CI_Model {
                         		endif;
                                         
                                     }
-                                    else{                                       
-                                        $relative_url = str_replace($_SERVER['DOCUMENT_ROOT'], '', $upload_data['full_path']);                                  
+                                    else{    
                                         $upload_data = $this->upload->data();
+                                        $relative_url = str_replace($_SERVER['DOCUMENT_ROOT'], '', $upload_data['full_path']);                                                                        
                                         $data = array(
                                                 'fk_sub_id' => $fk_sub_id,
                                                 'name' => $post[$i],

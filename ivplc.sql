@@ -3,18 +3,12 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 30, 2013 at 09:16 PM
+-- Generation Time: Jul 11, 2013 at 08:53 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.4.10
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `ivplc`
@@ -73,26 +67,36 @@ CREATE TABLE `components` (
   `fk_sub_id` int(11) unsigned NOT NULL,
   `name` varchar(30) DEFAULT NULL,
   `url` varchar(400) DEFAULT NULL,
+  `file_name` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`pk_component_id`),
   KEY `fk_sub_id` (`fk_sub_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=131 ;
 
 --
 -- Dumping data for table `components`
 --
 
-INSERT INTO `components` (`pk_component_id`, `fk_sub_id`, `name`, `url`) VALUES
-(4, 4, 'Engine', '/uploads/noise_files/4_noise_0.xls'),
-(5, 4, 'Muffler', '/uploads/noise_files/4_noise_1.xls'),
-(6, 4, 'Brakes', '/uploads/noise_files/4_noise_2.xls'),
-(13, 11, 'Engine', NULL),
-(14, 11, 'Brakes', NULL),
-(21, 15, 'Gear', ''),
-(22, 15, 'Brakes', ''),
-(23, 16, 'Engine1', ''),
-(24, 16, 'Engine2', ''),
-(25, 17, 'comp1', ''),
-(26, 17, 'comp2', '');
+INSERT INTO `components` (`pk_component_id`, `fk_sub_id`, `name`, `url`, `file_name`) VALUES
+(4, 4, 'Engine', '/uploads/noise_files/4_noise_0.xls', NULL),
+(5, 4, 'Muffler', '/uploads/noise_files/4_noise_1.xls', NULL),
+(6, 4, 'Brakes', '/uploads/noise_files/4_noise_2.xls', NULL),
+(13, 11, 'Engine', NULL, NULL),
+(14, 11, 'Brakes', NULL, NULL),
+(21, 15, 'Gear', '', NULL),
+(22, 15, 'Brakes', '', NULL),
+(25, 17, 'comp1', '', NULL),
+(26, 17, 'comp2', '', NULL),
+(33, 29, 'ABrake', '/uploads/noise_files/10_transfer_43_46.xls', NULL),
+(34, 29, 'AGear', '/uploads/noise_files/4_transfer_18_20.xls', NULL),
+(35, 29, 'AEngine', '/uploads/noise_files/4_transfer_19_22.xls', NULL),
+(43, 41, '911comp1', '/uploads/noise_files/4_transfer_18_20.xls', NULL),
+(44, 41, '911comp2', '/uploads/noise_files/4_transfer_19_21.xls', NULL),
+(120, 125, '1', '/uploads/noise_files/125_noise_0.xls', '125_noise_0.xls'),
+(121, 125, '2', '/uploads/noise_files/125_noise_1.xls', '125_noise_1.xls'),
+(124, 127, '1', '', NULL),
+(125, 127, '2', '', NULL),
+(126, 128, '1', '', NULL),
+(127, 128, '2', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -152,7 +156,7 @@ INSERT INTO `group` (`pk_group_id`, `name`, `email`, `password`, `bio`, `url`, `
 (2, 'Mario Lok', 'luo97650@gmail.com', '5f4dcc3b5aa765d61d8327deb882cf99', NULL, NULL, '\0'),
 (3, 'Mohammad Mirvakili', 'sm.mirvakili@gmail.com', '5f4dcc3b5aa765d61d8327deb882cf99', NULL, NULL, '\0'),
 (4, 'Paul Van Veen', 'p.vveen@gmail.com', '5f4dcc3b5aa765d61d8327deb882cf99', NULL, NULL, '\0'),
-(5, 'Dr. Lutz Lampe', 'lutz@ece.ubc.ca', '5f4dcc3b5aa765d61d8327deb882cf99', 'Lutz Lampe is a Professor with the Department of Electrical and Computer Engineering at UBC. He received PhD degree in electrical engineering from the University of Erlangen, Germany, in 2002. His main research interests lie in the areas of communications and information theory applied to wireless and powerline transmission.Dr. Lampe has received a number of UBC and international awards for his scholarly contributions. He has been an Associate Editor for several international journals, General Chair of the International Power Line Communications and Ultra-Wideband Communications conferences, and he is the present Chair of the IEEE Communications Society Technical Committee on Power Line Communications. He is Co-Editor of the book Power Line Communications.', '/uploads/group/drlampe.jpg', ''),
+(5, 'Dr. Lutz Lampe', 'lampe@ece.ubc.ca', '5f4dcc3b5aa765d61d8327deb882cf99', 'Lutz Lampe is a Professor with the Department of Electrical and Computer Engineering at UBC. He received PhD degree in electrical engineering from the University of Erlangen, Germany, in 2002. His main research interests lie in the areas of communications and information theory applied to wireless and powerline transmission.Dr. Lampe has received a number of UBC and international awards for his scholarly contributions. He has been an Associate Editor for several international journals, General Chair of the International Power Line Communications and Ultra-Wideband Communications conferences, and he is the present Chair of the IEEE Communications Society Technical Committee on Power Line Communications. He is Co-Editor of the book Power Line Communications.', '/uploads/group/drlampe.jpg', ''),
 (6, 'Dr. Shahriar Mirabbasi', 'shahriar@ece.ubc.ca', '5f4dcc3b5aa765d61d8327deb882cf99', 'Shahriar Mirabbasi received the BSc in electrical engineering from Sharif University of Technology in 1990, and the MASc and PhD in electrical and computer engineering from the University of Toronto in 1997 and 2002, respectively. Since August 2002, he has been with the Department of Electrical and Computer Engineering, UBC where he is currently an Associate Professor.Dr. Mirabbasi and his teamÃ¢??s research interests include analog, mixed-signal, and RF integrated circuit and system design for wireless and wireline data communication, data converter, sensor interface, and biomedical applications.', '/uploads/group/shahriar.jpg', ''),
 (7, 'Dr. Roberto Rosales', 'robertor@ece.ubc.ca', '5f4dcc3b5aa765d61d8327deb882cf99', 'Roberto Rosales is an electrical engineer with 20 years of experience, specializing in the design and test of analog ICsCurrently he is the Test Lab Manager for the System-on-Chip group at UBC, responsible for managing the test lab facilities, providing technical support for the design and test of ICs as well as participating in research projects.', '/uploads/group/roberto.png', '');
 
@@ -168,19 +172,23 @@ CREATE TABLE `images` (
   `url` varchar(400) DEFAULT NULL,
   PRIMARY KEY (`pk_image_id`),
   KEY `fk_sub_id` (`fk_sub_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=119 ;
 
 --
 -- Dumping data for table `images`
 --
 
-INSERT INTO `images` (`pk_image_id`,`fk_sub_id`, `url`) VALUES
+INSERT INTO `images` (`pk_image_id`, `fk_sub_id`, `url`) VALUES
 (3, 4, '/uploads/car_images/4_image_0.jpg'),
 (4, 4, '/uploads/car_images/4_image_1.jpg'),
 (11, 11, '/uploads/car_images/11_image_0.jpg'),
 (15, 15, '/uploads/car_images/15_image_0.jpg'),
-(16, 16, '/uploads/car_images/11_image_0.jpg'),
-(17, 17, '/uploads/car_images/17_image_0.jpg');
+(17, 17, '/uploads/car_images/17_image_0.jpg'),
+(21, 29, '/uploads/car_images/29_image_0.jpg'),
+(27, 41, '/uploads/car_images/41_image_0.jpg'),
+(111, 125, '/uploads/car_images/125_image_0'),
+(113, 127, '/uploads/car_images/127_image_0'),
+(114, 128, '/uploads/car_images/128_image_0');
 
 -- --------------------------------------------------------
 
@@ -254,24 +262,30 @@ CREATE TABLE `measurements` (
   `fk_componentA_id` int(11) unsigned NOT NULL,
   `fk_componentB_id` int(11) unsigned NOT NULL,
   `url` varchar(400) DEFAULT NULL,
+  `file_name` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`pk_measurement_id`),
   KEY `fk_compA_id` (`fk_componentA_id`),
   KEY `fk_compB_id` (`fk_componentB_id`),
   KEY `fk_sub_id` (`fk_sub_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=76 ;
 
 --
 -- Dumping data for table `measurements`
 --
 
-INSERT INTO `measurements` (`pk_measurement_id`, `fk_sub_id`, `fk_componentA_id`, `fk_componentB_id`, `url`) VALUES
-(1, 4, 4, 5, '/uploads/transfer_functions/4_transfer_4_5.xls'),
-(2, 4, 4, 6, '/uploads/transfer_functions/4_transfer_4_6.xls'),
-(3, 4, 5, 6, '/uploads/transfer_functions/4_transfer_5_6.xls'),
-(11, 11, 13, 14, ''),
-(15, 15, 21, 22, '/uploads/transfer_functions/3_transfer_13_14.xls'),
-(16, 16, 23, 24, ''),
-(17, 17, 25, 26, '');
+INSERT INTO `measurements` (`pk_measurement_id`, `fk_sub_id`, `fk_componentA_id`, `fk_componentB_id`, `url`, `file_name`) VALUES
+(1, 4, 4, 5, '/uploads/transfer_functions/4_transfer_4_5.xls', NULL),
+(2, 4, 4, 6, '/uploads/transfer_functions/4_transfer_4_6.xls', NULL),
+(3, 4, 5, 6, '/uploads/transfer_functions/4_transfer_5_6.xls', NULL),
+(11, 11, 13, 14, '', NULL),
+(15, 15, 21, 22, '/uploads/transfer_functions/3_transfer_13_14.xls', NULL),
+(17, 17, 25, 26, '', NULL),
+(21, 29, 33, 34, '/uploads/transfer_functions/4_transfer_18_22.xls', NULL),
+(22, 29, 33, 35, '/uploads/transfer_functions/4_transfer_21_22.xls', NULL),
+(23, 29, 34, 35, '/uploads/transfer_functions/4_transfer_19_20.xls', NULL),
+(34, 41, 43, 44, '/uploads/transfer_functions/4_transfer_21_22.xls', NULL),
+(74, 127, 124, 125, '/uploads/transfer_functions/127_transfer_124_125.xls', NULL),
+(75, 128, 126, 127, '/uploads/transfer_functions/128_transfer_126_127.xls', '128_transfer_126_127.xls');
 
 -- --------------------------------------------------------
 
@@ -310,7 +324,7 @@ INSERT INTO `publications` (`pk_pub_id`, `fk_contributor_id`, `title`, `date`, `
 --
 
 CREATE TABLE `vehicles` (
-  `pk_sub_id` int(11) unsigned NOT NULL,
+  `pk_sub_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `vehicle_id` int(11) unsigned NOT NULL,
   `revision` int(11) unsigned NOT NULL,
   `fk_contributor_id` int(11) unsigned NOT NULL,
@@ -318,23 +332,27 @@ CREATE TABLE `vehicles` (
   `model` varchar(30) NOT NULL DEFAULT '',
   `year` year(4) NOT NULL,
   `submitted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `view` bit(1) NOT NULL DEFAULT b'0',
+  `view` tinyint(1) NOT NULL DEFAULT '0',
   `agreement` bit(1) NOT NULL DEFAULT b'0',
   PRIMARY KEY (`pk_sub_id`),
   KEY `fk_contributor_id` (`fk_contributor_id`),
   KEY `fk_manufacturer_id` (`fk_manufacturer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=133 ;
 
 --
 -- Dumping data for table `vehicles`
 --
 
-INSERT INTO `vehicles` (`pk_sub_id`,`vehicle_id`,`revision`, `fk_contributor_id`, `fk_manufacturer_id`, `model`, `year`, `submitted`, `view`, `agreement`) VALUES
-(4, 1, 0, 1, 21, 'Aventador', 2012, '2013-06-21 07:21:11', '', ''),
-(11, 2, 0, 3, 1, 'Solstice', 2006, '2013-06-21 07:21:26', '', ''),
-(15, 3, 0, 4, 32, 'Sunfire', 2001, '2013-06-17 01:50:20', '', ''),
-(16, 4, 0, 4, 29, 'Maxima', 2000, '2013-06-21 07:20:16', '\0', ''),
-(17, 5, 0, 6, 4, 'Old', 1970, '2013-06-21 07:20:30', '', '');
+INSERT INTO `vehicles` (`pk_sub_id`, `vehicle_id`, `revision`, `fk_contributor_id`, `fk_manufacturer_id`, `model`, `year`, `submitted`, `view`, `agreement`) VALUES
+(4, 1, 0, 1, 21, 'Aventador', 2012, '2013-06-21 07:21:11', 1, ''),
+(11, 2, 0, 3, 1, 'Solstice', 2006, '2013-06-21 07:21:26', 1, ''),
+(15, 3, 0, 4, 32, 'Sunfire', 2001, '2013-06-17 01:50:20', 1, ''),
+(17, 5, 0, 6, 4, 'Old', 1970, '2013-06-21 07:20:30', 1, ''),
+(29, 7, 0, 4, 2, 'A5', 2000, '2013-07-09 19:16:38', 1, ''),
+(41, 6, 1, 4, 33, '912', 1979, '2013-07-09 17:45:00', 1, ''),
+(125, 8, 0, 4, 1, '1999', 1979, '2013-07-12 03:40:38', 0, ''),
+(127, 9, 0, 4, 1, '2', 1979, '2013-07-12 03:42:06', 0, ''),
+(128, 10, 0, 4, 1, '1999', 1979, '2013-07-12 03:44:23', 0, '');
 
 --
 -- Constraints for dumped tables
@@ -378,7 +396,3 @@ ALTER TABLE `publications`
 ALTER TABLE `vehicles`
   ADD CONSTRAINT `vehicles_ibfk_1` FOREIGN KEY (`fk_contributor_id`) REFERENCES `contributors` (`pk_contributor_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `vehicles_ibfk_2` FOREIGN KEY (`fk_manufacturer_id`) REFERENCES `manufacturers` (`pk_manufacturer_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

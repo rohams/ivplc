@@ -253,6 +253,7 @@ class Submissions extends CI_Controller {
 			'title' => 'Edit Vehicle',
 			'contributor' => $this->session->userdata('contributor'),
 			'manufacturers' => $this->manufacturers->return_manufacturers(),
+                        'error' => '',
 			'file' => $this->session->userdata('file')
 			);
                 $data['id']=count($data['vehicle']['components'])-2;
@@ -274,10 +275,30 @@ class Submissions extends CI_Controller {
 					$msr = $this->file_parser->measurements_parser();
 					
 					$images = $this->images->upload_images($vehicle, $img);
-					$components = $this->components->upload_components($vehicle, $cmp, $post['component_name']);
-					$measurements = $this->measures->upload_measurements($vehicle, $msr, $components);
-                                        redirect('submit/edit/');
+					$comp_error = $this->components->upload_components($vehicle, $cmp, $post['component_name']);
+                                        $components = $this->components->return_vehicle_components($vehicle);
+					$meas_error = $this->measures->upload_measurements($vehicle, $msr, $components);
+                                        
+                                        if($comp_error!='success') :
+						$data['error']='upload component error: '.$comp_error;
+                                                $this->vehicles->reject($vehicle);
+                                                $this->load->view('header', $data);
+                                                $this->load->view('nav', $data);
+                                                $this->load->view('submissions/editform', $data);		
+                                                $this->load->view('footer', $data);
+                                                
+                                        elseif($meas_error!='success') :
+						$data['error']='upload measurement error: '.$meas_error;
+                                                $this->vehicles->reject($vehicle);
+                                                $this->load->view('header', $data);
+                                                $this->load->view('nav', $data);
+                                                $this->load->view('submissions/editform', $data);		
+                                                $this->load->view('footer', $data);
+					else:
+                                                redirect('submit/edit/');
+                                        endif;                              
                                     endif;
+                                    
 					break;
 				case 'Cancel' :
                                         redirect('submit/edit/');

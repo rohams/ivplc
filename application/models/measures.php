@@ -44,7 +44,8 @@ class Measures extends CI_Model {
                                                     'fk_sub_id' => $fk_sub_id,
                                                     'fk_componentA_id' => $components[$i]['pk_component_id'],
                                                     'fk_componentB_id' => $components[$j]['pk_component_id'],
-                                                    'url' => str_replace('/ivplc', '', $relative_url)
+                                                    'url' => str_replace('/ivplc', '', $relative_url),
+                                                    'file_name' => $upload_data['file_name'],
                                             );
 				
                                             $query = $this->db->insert('measurements', $data);

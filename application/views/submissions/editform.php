@@ -1,7 +1,7 @@
 <div class="content"  id="user-edit-measurements">
 
 	<h1 class="title">Edit Vehicle</h1>
-
+        <div class="errors"><?php echo $error;?></div> 
 	<?php if(validation_errors()) : ?>
 		<div class="errors"><?=validation_errors();?></div>
 	<?php endif; ?>
