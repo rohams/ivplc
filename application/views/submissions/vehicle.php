@@ -1,9 +1,9 @@
 <div class="content">
 
 	<h1 class="title">Submit Vehicle</h1>
-
+        <div class="errors"><?php echo $error;?></div> 
 	<?php if(validation_errors()) : ?>
-		<div class="errors"><?=validation_errors();?></div>
+		<div class="errors"><?=validation_errors();?></div>                          
 	<?php endif; ?>
                 <script>
 			var id = 0;

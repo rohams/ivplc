@@ -115,7 +115,8 @@ class Submissions extends CI_Controller {
 				'title' => 'Submit Vehicle',
 				'contributor' => $this->session->userdata('contributor'),
 				'manufacturers' => $this->manufacturers->return_manufacturers(),
-				'file' => $this->session->userdata('file')
+				'file' => $this->session->userdata('file'),
+                                'error' => ''
 			);
 			
 			if($this->form_validation->run()==FALSE) :
@@ -126,28 +127,48 @@ class Submissions extends CI_Controller {
 			else :
 				if($this->input->post()) :
 					$post = $this->input->post();
-					$vehicle = $this->vehicles->create_vehicle($post);
+					$vehicle_sub_id = $this->vehicles->create_vehicle($post);
 										
 					$img = $this->file_parser->images_parser();
 					$cmp = $this->file_parser->components_parser();
 					$msr = $this->file_parser->measurements_parser();
 					
-					$images = $this->images->upload_images($vehicle, $img);
-					$components = $this->components->upload_components($vehicle, $cmp, $post['component_name']);
-					$measurements = $this->measures->upload_measurements($vehicle, $msr, $components);
+					$images = $this->images->upload_images($vehicle_sub_id, $img);
+					$comp_error = $this->components->upload_components($vehicle_sub_id, $cmp, $post['component_name']);
+                                        $components = $this->components->return_vehicle_components($vehicle_sub_id);
+					$meas_error = $this->measures->upload_measurements($vehicle_sub_id, $msr, $components);
 					
-					if($vehicle) :
+					if($vehicle_sub_id) :
 						$this->session->set_userdata('submitted', 'true');
 					else :
 						$this->session->set_userdata('submitted', 'false');
 					endif;
-					
+                                        
+                                        if($comp_error!='success') :
+						$data['error']='upload component error: '.$comp_error;
+                                                $this->vehicles->reject($vehicle_sub_id);
+                                                $this->load->view('header', $data);
+                                                $this->load->view('nav', $data);
+                                                $this->load->view('submissions/vehicle', $data);		
+                                                $this->load->view('footer', $data);
+                                                
+                                        elseif($meas_error!='success') :
+						$data['error']='upload measurement error: '.$meas_error;
+                                                $this->vehicles->reject($vehicle_sub_id);
+                                                $this->load->view('header', $data);
+                                                $this->load->view('nav', $data);
+                                                $this->load->view('submissions/vehicle', $data);		
+                                                $this->load->view('footer', $data);
+					else:
 					redirect('submit/chooser');
-				endif;
-			endif;
-		else :
-			redirect('submit');
-		endif;
+                                        endif;                              
+			
+                                endif;
+                        endif;
+                        
+                        else :
+                        redirect('submit');  
+                endif;
 	}
 	
 	public function submit_publication(){		
@@ -264,13 +285,7 @@ class Submissions extends CI_Controller {
 				default :
 					return false;
 			}
-                /*	$img = $this->file_parser->images_parser();
-                        $cmp = $this->file_parser->components_parser();
-                        $msr = $this->file_parser->measurements_parser();			
-                        $images = $this->images->upload_images($vehicle, $img);
-                        $components = $this->components->upload_components($vehicle, $cmp, $post['component_name']);
-                        $measurements = $this->measures->upload_measurements($vehicle, $msr, $components);
-                */	
+
                 else:
                     $this->load->view('header', $data);
                     $this->load->view('nav', $data);

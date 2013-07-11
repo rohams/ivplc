@@ -16,31 +16,45 @@ class Components extends CI_Model {
 		);
 	
 	    $_FILES = $components;
-	    
+	    $error = 'success';
 	    for($i = 0; $i < count($components); $i++) :
 			$config['file_name'] = $fk_sub_id . '_noise_'. $i;
 			$this->upload->initialize($config); 
-			
-//			if($_FILES[$i]['error'] != 4) :
-				$this->upload->do_upload($i);
-			
-				$upload_data = $this->upload->data();
-				$relative_url = str_replace($_SERVER['DOCUMENT_ROOT'], '', $upload_data['full_path']);
-//			else :
-//				$relative_url = null;
-//			endif;
-			
-			$data = array(
-				'fk_sub_id' => $fk_sub_id,
-				'name' => $post[$i],
-                                'file_name' => $upload_data['file_name'],
-				'url' => str_replace('/ivplc', '', $relative_url)
-			);
-			
-			$query = $this->db->insert('components', $data);
+				
+                                    if(! $this->upload->do_upload($i)){
+                                        if($_FILES[$i]['error'] != 4) :
+                                            // for other errors show the error
+                                            $error = $this->upload->display_errors();
+                                            return $error;
+                                        else :
+                                            // It is ok if the user decided not to upload any file
+                                            $relative_url = null;
+                                            $upload_data = $this->upload->data();
+                                            $data = array(
+                                                'fk_sub_id' => $fk_sub_id,
+                                                'name' => $post[$i],
+                                                'url' => str_replace('/ivplc', '', $relative_url)
+                                        );
+                        		endif;
+                                        
+                                    }
+                                    else{                                       
+                                        $relative_url = str_replace($_SERVER['DOCUMENT_ROOT'], '', $upload_data['full_path']);                                  
+                                        $upload_data = $this->upload->data();
+                                        $data = array(
+                                                'fk_sub_id' => $fk_sub_id,
+                                                'name' => $post[$i],
+                                                'file_name' => $upload_data['file_name'],
+                                                'url' => str_replace('/ivplc', '', $relative_url)
+                                        );
+                                    }
+                                    $query = $this->db->insert('components', $data);
+                                    
+                                       
+                                    
 		endfor;
 		
-		return $this->return_vehicle_components($fk_sub_id);
+		return $error;
     }
     
     
