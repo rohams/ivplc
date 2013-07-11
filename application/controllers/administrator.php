@@ -48,6 +48,9 @@ class Administrator extends CI_Controller {
 					redirect('admin/measurements');
 					break;
 				case 'Reject' :
+                                        $this->vehicles->reject($pk_sub_id);
+					redirect('admin/measurements');
+					break;
 				case 'Delete' :
 					$this->vehicles->reject($pk_sub_id);
 					redirect('admin/measurements');

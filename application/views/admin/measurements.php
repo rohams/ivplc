@@ -34,8 +34,8 @@
 							<?=form_open('admin/measurements');?>
 								<?=form_hidden('pk_sub_id', $vehicle['pk_sub_id']);?>
 								<?=form_hidden('fk_contributor_id', $vehicle['contributor']['pk_contributor_id']);?>
-								<div id="approve"><?=form_submit('submit', 'Approve');?></div>
-								<div id="delete"><?=form_submit('submit', 'Reject');?></div>
+								<a class="approve"><?=form_submit('submit', 'Approve');?></a>
+								<a class="delete"><?=form_submit('submit', 'Delete');?></a>
 							<?=form_close();?>
 						</td>
 					</tr>
@@ -79,8 +79,8 @@
 							<?=form_open('admin/measurements');?>
 								<?=form_hidden('pk_sub_id', $vehicle['pk_sub_id']);?>
 								<?=form_hidden('fk_contributor_id', $vehicle['contributor']['pk_contributor_id']);?>
-								<div id="approve"><?=form_submit('submit', 'Approve');?></div>
-								<div id="delete"><?=form_submit('submit', 'Reject');?></div>
+								<a class="approve"><?=form_submit('submit', 'Approve');?></a>
+								<a class="delete"><?=form_submit('submit', 'Reject');?></a>
 							<?=form_close();?>
 						</td>
 					</tr>
@@ -122,7 +122,7 @@
 						<td>
 							<?=form_open('admin/measurements');?>
 								<?=form_hidden('pk_sub_id', $vehicle['pk_sub_id']);?>
-								<div id="delete"><?=form_submit('submit', 'Delete');?></div>
+								<a class="delete"><?=form_submit('submit', 'Delete');?></a>
 							<?=form_close();?>
 						</td>
 					</tr>
@@ -166,8 +166,8 @@
 							<?=form_open('admin/measurements');?>
 								<?=form_hidden('pk_sub_id', $vehicle['pk_sub_id']);?>
 								<?=form_hidden('fk_contributor_id', $vehicle['contributor']['pk_contributor_id']);?>
-								<div id="approve"><?=form_submit('submit', 'Approve');?></div>
-								<div id="delete"><?=form_submit('submit', 'Reject');?></div>
+								<a class="approve"><?=form_submit('submit', 'Approve');?></a>
+								<a class="delete"><?=form_submit('submit', 'Delete');?></a>
 							<?=form_close();?>
 						</td>
 					</tr>

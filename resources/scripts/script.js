@@ -1,9 +1,16 @@
-
 $(document).ready(function(){
 
 /* GENERAL - OPEN WINDOW IN NEW TAB*/
 	$('.ext').click(function(){ window.open(this.href); return false; });
 
+
+/* DELETE CONFIRMATION*/
+        $('a.delete').click(function(){
+            if (confirm("Are you sure you want to delete this?")) {
+                return true;
+            }
+            return false; 
+	});
 
 /* GROUPS DEFAULT IMAGE*/
 	$("#groups .member img").error(function(){
