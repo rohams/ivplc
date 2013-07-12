@@ -6,7 +6,7 @@ $(document).ready(function(){
 
 /* DELETE CONFIRMATION*/
         $('a.delete').click(function(){
-            if (confirm("Are you sure you want to delete this?")) {
+            if (confirm("Are you sure you want to delete this record from the database?")) {
                 return true;
             }
             return false; 
@@ -16,8 +16,7 @@ $(document).ready(function(){
     $fileCounter=1
     $('#deletefile').click(function(){
         $append= '<input type="file" name="component[]"/>';
-        var boxes = $('input[name=delete]:checked');
-        
+        var boxes = $('input[name=delete]:checked');       
         $(boxes).each(function(){
             var checkId = $(this).attr('id');
             //alert(checkId);

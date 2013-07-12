@@ -47,7 +47,7 @@
 				<a class="remove" id="decrementComponent" href="#">Remove Component</a>
 			</div>
 						
-			<p class="note">Please provide the names of each component, and attach any files associated with that singular point (ie: noise function file).</p>
+			<p class="note">Please provide the names of each component, and attach any files associated with that singular point (ie: noise function file).<br> (Remove old files in order to replace them with new files)</p>
 			<script>
 				var id = <?php echo $id; ?>;
 			</script>
@@ -62,7 +62,7 @@
                                                 <?=form_input(array('name'=>'component_name[]', 'maxlength'=>'20', 'value'=>set_value('component_name[]', $component['name'])));?>
                                                 <?php if($component['url'] != NULL) : ?>
                                                     <span id="file_<?=$i;?>">"<input type="checkbox" id="<?=$i;?>" name="delete"><a href="<?=base_url() . substr($component['url'],1);?>"><?=$component['file_name'];?></a></span>
-                                                    <?=form_hidden(array('name'=>'component[]'));?>
+                                                    <?=form_hidden('orig_component_id[]', $component['pk_component_id']);?>                                   
                                                 <?php else : ?>
                                                     <?=form_upload(array('name'=>'component[]'));?>
                                                 <?php endif;?>
@@ -85,7 +85,7 @@
 
 		<!-- MEASUREMENTS -->
 		<?=form_fieldset('Measurements');?>
-			<p class="note">Please attach the s-parameter files associated between the two referenced points.</p>
+			<p class="note">Please attach the s-parameter files associated between the two referenced points.<br> (Remove old files in order to replace them with new files)</p>
 			
 			<div id="measurements">
                             <?php for($i = 1; $i <= $id+1; $i++) :?>

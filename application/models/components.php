@@ -57,6 +57,24 @@ class Components extends CI_Model {
 		return $error;
     }
     
+    /* INSERT COMPONENTS IN EDIT MODE */
+    function insert_orig_components ($fk_sub_id, $post){
+        $data= array();
+         for($i = 0; $i < count($post); $i++) :
+            $query=  $this->db->query("select name, url, file_name from components where pk_component_id= ".$post[$i]."");
+             if( $query->num_rows() > 0 ) : 
+                $row = $query->row_array();
+                $data['name']=$row['name'];
+                $data['url']=$row['url'];
+                $data['file_name']=$row['file_name'];
+                $data['fk_sub_id']=$fk_sub_id;
+                $query2 = $this->db->insert('components', $data);
+                $insert_id = $this->db->insert_id();
+            endif;
+         endfor;
+        
+    }
+    
     
     /* RETURN WITH VEHICLE */
     function return_vehicle_components($fk_sub_id){

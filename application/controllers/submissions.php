@@ -243,7 +243,7 @@ class Submissions extends CI_Controller {
 	        $this->form_validation->set_rules('manufacturer', 'Manufacturer', 'required');
 		$this->form_validation->set_rules('model', 'Model', 'required');
 		$this->form_validation->set_rules('year', 'Year', 'required|min_length[4]|numeric');
-		//$this->form_validation->set_rules('component_name[]', 'Component Name', 'required');
+		$this->form_validation->set_rules('component_name[]', 'Component Name', 'required');
 		$this->form_validation->set_rules('agreement', 'Agreement', 'required');
 			
 		$data = array(
@@ -256,6 +256,7 @@ class Submissions extends CI_Controller {
                         'error' => '',
 			'file' => $this->session->userdata('file')
 			);
+                //In order to expand the upload file list we need to pass this id to script.js
                 $data['id']=count($data['vehicle']['components'])-2;
                 if($this->input->post()) :
                         $submit = $this->input->post('submit');
@@ -275,8 +276,10 @@ class Submissions extends CI_Controller {
 					$msr = $this->file_parser->measurements_parser();
 					
 					$images = $this->images->upload_images($vehicle, $img);
-					$comp_error = $this->components->upload_components($vehicle, $cmp, $post['component_name']);
+					$comp_error = $this->components->upload_components($vehicle, $cmp, $post['component_name']);                                        
+                                        $or_cp_error = $this->components->insert_orig_components($vehicle, $post['orig_component_id']);
                                         $components = $this->components->return_vehicle_components($vehicle);
+                                        //add function to insert orig measurements
 					$meas_error = $this->measures->upload_measurements($vehicle, $msr, $components);
                                         
                                         if($comp_error!='success') :
