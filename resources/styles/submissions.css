@@ -16,7 +16,7 @@ form#submit_general input[type="text"] {
 	font: 12px/18px Helvetica; text-shadow: 0 1px 0 white;
 }
 form#submit_general input[type="text"]:focus { border-color: #0d58be; }
-form#submit_general input[type="checkbox"] { float: left; margin: 3px 8px 3px 0; }
+form#submit_general input[type="checkbox"] { float: left; margin: 3px 8px 10px 12px; }
 form#submit_general select { float: left; margin: 10px 0 10px 10px; }
 form#submit_general input[type="file"] { float: left; margin: 10px 0 10px 10px; }
 
@@ -61,6 +61,38 @@ p#confirm { width: 432px; text-align: justify; float: left; }
 .controls a.remove:hover { background-position: -32px -33px; }
 .controls a.remove:active { background-position: -64px -33px; }
 
+#deletefile {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    float: right;
+    height: 15px;
+    line-height: 15px;
+    margin: 3px 10px 0 0;
+    padding: 0.6em;
+    position:a;
+    right: 0;
+    top: 0;
+    z-index: 10;
+    border: 1px solid #953403; 
+    background: #2567ab;
+    font-weight: bold; 
+    color: #fff; 
+    cursor: pointer;
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #ec4a0b),color-stop(1, #ad390c));}
+#deletefile:hover {
+    border: 1px solid #953403; 
+    background: #f15c22; 
+    font-weight: bold; 
+    color: #fff;  
+    text-shadow: 0 -1px 1px #014D68; 
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #f15c22),color-stop(1, #f15c22));}
+#deletefile:active{
+    border: 1px solid #225377; 
+    background: #79ae21; 
+    font-weight: bold; 
+    color: #fff; 
+    text-shadow: 0 -1px 1px #225377; 
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #bc770f),color-stop(1, #e6590c));}
 
 /* INDEX */
 #submit_index ul { margin-bottom: 20px; list-style: inside square; }

@@ -12,6 +12,23 @@ $(document).ready(function(){
             return false; 
 	});
 
+/* DELETE FILES IN EDITFORM*/
+    $fileCounter=1
+    $('#deletefile').click(function(){
+        $append= '<input type="file" name="component[]"/>';
+        var boxes = $('input[name=delete]:checked');
+        
+        $(boxes).each(function(){
+            var checkId = $(this).attr('id');
+            //alert(checkId);
+                $(this).remove();              
+                $('#component'+checkId).append($append);
+                $('#file_'+checkId).remove();
+        });
+        return false; 
+    });
+
+
 /* GROUPS DEFAULT IMAGE*/
 	$("#groups .member img").error(function(){
 		$(this).attr('src', '../resources/styles/defaults/groups.png');

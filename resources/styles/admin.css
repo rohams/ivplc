@@ -42,18 +42,18 @@ a:hover, a:active{ cursor: pointer; color: #0d58be; }
 	#add:active{ background-position: -64px 0; }
 
 	/*Approve*/
-	#approve input[type="submit"]{
+	a.approve input[type="submit"]{
 		background: url(images/options.png) no-repeat;
 		width: 100%; overflow: visible;
 		height: 30px; width: 30px;
 		position: relative; border: none; float: left;
 		font: 12px/24px Helvetica; color: #666; text-shadow: 0 1px 0 white; cursor: pointer; text-indent: -9999px;
 	}
-	#approve input[type="submit"]:hover{ background-position: 0 -30px; }
-	#approve input[type="submit"]:active{ background-position: 0 -60px; }
+	a.approve input[type="submit"]:hover{ background-position: 0 -30px; }
+	a.approve input[type="submit"]:active{ background-position: 0 -60px; }
 
 	/*Delete and Reject Button*/
-	#delete input[type="submit"]{
+	a.delete input[type="submit"]{
 		background: url(images/options.png) no-repeat;
 		width: 100%; overflow: visible;
 		height: 30px; width: 30px;
@@ -61,8 +61,8 @@ a:hover, a:active{ cursor: pointer; color: #0d58be; }
 		background-position: -30px 0 ;
 		font: 12px/24px Helvetica; color: #666; text-shadow: 0 1px 0 white; cursor: pointer; text-indent: -9999px;
 	}
-	#delete input[type="submit"]:hover{ background-position: -30px -30px; }
-	#delete input[type="submit"]:active{ background-position: -30px -60px; }
+	a.delete input[type="submit"]:hover{ background-position: -30px -30px; }
+	a.delete input[type="submit"]:active{ background-position: -30px -60px; }
 	
 	
 	/*CREATE NEW Member or Manufacturer BUTTON*/

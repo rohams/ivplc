@@ -23,7 +23,7 @@
 			<?=form_input(array('name'=>'year', 'maxlength'=>'4', 'value'=>set_value('year',$vehicle['year'])));?>
 		<?=form_fieldset_close();?>
 
-
+                <a id="deletefile" href="#">Remove File(s)</a>
 		<!-- IMAGES -->
 		<?=form_fieldset('Images');?>	
 			<div class="controls">
@@ -54,17 +54,18 @@
 
 			
 			<div class="group" id="components">
-                            
                          <?php if(isset($vehicle['components'])) : ?>
                             <?php $i=1 ?>
 			    <?php foreach($vehicle['components'] as $component) : ?>
 					<div class="group_member component" id="component<?=$i;?>">
-						<?=form_label('Component ' . $i, 'component_name');?>
-						<?=form_input(array('name'=>'component_name[]', 'maxlength'=>'20', 'value'=>set_value('component_name[]', $component['name'])));?>
+						<?=form_label('Component ' . $i, 'component_name');?>                                                
+                                                <?=form_input(array('name'=>'component_name[]', 'maxlength'=>'20', 'value'=>set_value('component_name[]', $component['name'])));?>
                                                 <?php if($component['url'] != NULL) : ?>
-                                                    <a href="<?=base_url() . substr($component['url'],1);?>"><?=$component['file_name'];?></a>
+                                                    <span id="file_<?=$i;?>">"<input type="checkbox" id="<?=$i;?>" name="delete"><a href="<?=base_url() . substr($component['url'],1);?>"><?=$component['file_name'];?></a></span>
+                                                    <?=form_hidden(array('name'=>'component[]'));?>
+                                                <?php else : ?>
+                                                    <?=form_upload(array('name'=>'component[]'));?>
                                                 <?php endif;?>
-						<?=form_upload(array('name'=>'component[]'));?>
 					</div>
                                 <?php $i++ ?>
                             <?php endforeach;?>
