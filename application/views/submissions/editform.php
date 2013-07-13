@@ -61,8 +61,10 @@
 						<?=form_label('Component ' . $i, 'component_name');?>                                                
                                                 <?=form_input(array('name'=>'component_name[]', 'maxlength'=>'20', 'value'=>set_value('component_name[]', $component['name'])));?>
                                                 <?php if($component['url'] != NULL) : ?>
-                                                    <span id="file_<?=$i;?>">"<input type="checkbox" id="<?=$i;?>" name="delete"><a href="<?=base_url() . substr($component['url'],1);?>"><?=$component['file_name'];?></a></span>
-                                                    <?=form_hidden('orig_component_id[]', $component['pk_component_id']);?>                                   
+                                                    <span id="file_<?=$i;?>">
+                                                        "<input type="checkbox" id="<?=$i;?>" name="delete"><a href="<?=base_url() . substr($component['url'],1);?>"><?=$component['file_name'];?></a>
+                                                        <?=form_hidden('orig_component_id[]', $component['pk_component_id']);?>
+                                                    </span>
                                                 <?php else : ?>
                                                     <?=form_upload(array('name'=>'component[]'));?>
                                                 <?php endif;?>

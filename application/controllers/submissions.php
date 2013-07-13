@@ -276,8 +276,10 @@ class Submissions extends CI_Controller {
 					$msr = $this->file_parser->measurements_parser();
 					
 					$images = $this->images->upload_images($vehicle, $img);
-					$comp_error = $this->components->upload_components($vehicle, $cmp, $post['component_name']);                                        
-                                        $or_cp_error = $this->components->insert_orig_components($vehicle, $post['orig_component_id']);
+					$comp_error = $this->components->upload_components($vehicle, $cmp, $post['component_name']);
+                                        if(isset($post['orig_component_id'])){
+                                            $or_cp_error = $this->components->insert_orig_components($vehicle, $post['orig_component_id'],$post['component_name']);
+                                        }
                                         $components = $this->components->return_vehicle_components($vehicle);
                                         //add function to insert orig measurements
 					$meas_error = $this->measures->upload_measurements($vehicle, $msr, $components);

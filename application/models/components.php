@@ -58,13 +58,16 @@ class Components extends CI_Model {
     }
     
     /* INSERT COMPONENTS IN EDIT MODE */
-    function insert_orig_components ($fk_sub_id, $post){
+    function insert_orig_components ($fk_sub_id, $post_id, $post_name ){
         $data= array();
-         for($i = 0; $i < count($post); $i++) :
-            $query=  $this->db->query("select name, url, file_name from components where pk_component_id= ".$post[$i]."");
+         for($i = 0; $i < count($post_id); $i++) :
+            $query=  $this->db->query("select url, file_name from components where pk_component_id= ".$post_id[$i]."");
              if( $query->num_rows() > 0 ) : 
                 $row = $query->row_array();
-                $data['name']=$row['name'];
+                //bug: what if name is not corrolated with post_name (i.e we have only the third component as the orig component, in this case the first component name is assigned to the third component)
+                //solution: know the order
+             
+                $data['name']=$post_name[$i];
                 $data['url']=$row['url'];
                 $data['file_name']=$row['file_name'];
                 $data['fk_sub_id']=$fk_sub_id;
