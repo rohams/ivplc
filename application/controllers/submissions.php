@@ -270,23 +270,20 @@ class Submissions extends CI_Controller {
                                         $this->load->view('submissions/editform',$data);		
                                         $this->load->view('footer', $data);
                                     else:
-                                        $vehicle = $this->vehicles->edit_this_vehicle($post);
+                                        $new_sub_id = $this->vehicles->edit_this_vehicle($post);
                                     	$img = $this->file_parser->images_parser();
 					$cmp = $this->file_parser->components_parser();
 					$msr = $this->file_parser->measurements_parser();
 					
-					$images = $this->images->upload_images($vehicle, $img);
-					$comp_error = $this->components->upload_components($vehicle, $cmp, $post['component_name']);
-                                        if(isset($post['orig_component_id'])){
-                                            $or_cp_error = $this->components->insert_orig_components($vehicle, $post['orig_component_id'],$post['component_name']);
-                                        }
-                                        $components = $this->components->return_vehicle_components($vehicle);
-                                        //add function to insert orig measurements
-					$meas_error = $this->measures->upload_measurements($vehicle, $msr, $components);
+					$images = $this->images->upload_images($new_sub_id, $img);
+                                        
+                                        $comp_error=$this->components->update_components($pk_sub_id, $new_sub_id, $cmp, $post['orig_component_id'], $post['component_name']);
+                                        $components = $this->components->return_vehicle_components($new_sub_id);
+					$meas_error = $this->measures->upload_measurements($new_sub_id, $msr, $components);
                                         
                                         if($comp_error!='success') :
 						$data['error']='upload component error: '.$comp_error;
-                                                $this->vehicles->reject($vehicle);
+                                                $this->vehicles->reject($new_sub_id);
                                                 $this->load->view('header', $data);
                                                 $this->load->view('nav', $data);
                                                 $this->load->view('submissions/editform', $data);		
@@ -294,7 +291,7 @@ class Submissions extends CI_Controller {
                                                 
                                         elseif($meas_error!='success') :
 						$data['error']='upload measurement error: '.$meas_error;
-                                                $this->vehicles->reject($vehicle);
+                                                $this->vehicles->reject($new_sub_id);
                                                 $this->load->view('header', $data);
                                                 $this->load->view('nav', $data);
                                                 $this->load->view('submissions/editform', $data);		
