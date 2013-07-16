@@ -61,6 +61,7 @@ class Vehicles extends CI_Model {
 			$car['year'] = $vehicle['year'];
 			$car['images'] = $this->images->return_vehicle_images($vehicle['pk_sub_id']);
 			$car['components'] = $this->components->return_vehicle_components_indexed($vehicle['pk_sub_id']);
+                        $car['ni_measurements'] = $this->measures->return_vehicle_measurements_no_index($vehicle['pk_sub_id']);
 			$car['measurements'] = $this->measures->return_vehicle_measurements($vehicle['pk_sub_id']);
 			$car['contributor'] = $this->contributors->return_contributor($vehicle['fk_contributor_id']);
 			return $car;

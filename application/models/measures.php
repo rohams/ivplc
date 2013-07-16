@@ -32,6 +32,7 @@ class Measures extends CI_Model {
                                                 else :
                                                     $relative_url = null;
                                                     $measurementCount++;
+                                                    $file_name = null;
                                                 endif;
                                             }
                                             else{
@@ -39,17 +40,17 @@ class Measures extends CI_Model {
 
                                                 $upload_data = $this->upload->data();
                                                 $relative_url = str_replace($_SERVER['DOCUMENT_ROOT'], '', $upload_data['full_path']);
-
+                                                $file_name = $upload_data['file_name'];
+                                            }
+                                            
                                                 $data = array(
                                                         'fk_sub_id' => $fk_sub_id,
                                                         'fk_componentA_id' => $components[$i]['pk_component_id'],
                                                         'fk_componentB_id' => $components[$j]['pk_component_id'],
                                                         'url' => str_replace('/ivplc', '', $relative_url),
-                                                        'file_name' => $upload_data['file_name'],
-                                                );
-
+                                                        'file_name' => $file_name,
+                                                );                                        
                                                 $query = $this->db->insert('measurements', $data);
-                                            }
                                         }
 			endfor;
 		endfor;
@@ -67,6 +68,19 @@ class Measures extends CI_Model {
 			endforeach;
 			
 			return $measurements;
+		endif;
+    }
+    
+    function return_vehicle_measurements_no_index($fk_sub_id){
+                $query = $this->db->get_where('measurements', array('fk_sub_id'=>$fk_sub_id));
+		$measurements = array();
+		
+		if( $query->num_rows() > 0 ) :   
+			foreach( $query->result_array() as $measurement ) :
+				$measurements[] = $measurement;
+			endforeach;		
+			
+                        return $measurements;
 		endif;
     }
 

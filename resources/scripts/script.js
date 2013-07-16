@@ -13,16 +13,38 @@ $(document).ready(function(){
 	});
 
 /* DELETE FILES IN EDITFORM*/
-    $fileCounter=1
-    $('#deletefile').click(function(){
+  /*  $('#deletefile-1').click(function(){
         $append= '<input type="file" name="component[]"/>';
         var boxes = $('input[name=delete]:checked');       
         $(boxes).each(function(){
             var checkId = $(this).attr('id');
-            //alert(checkId);
-                $(this).remove();              
+            //alert(checkId);             
                 $('#component'+checkId).append($append);
                 $('#file_'+checkId).remove();
+        });
+        return false; 
+    });
+    */
+    $('#deletefile-2').click(function(){
+        $append= '<input type="file" name="component[]"/>';
+        var boxes = $('input[name=delete2]:checked');       
+        $(boxes).each(function(){
+            var checkId = $(this).attr('id');
+            //alert(checkId);             
+                $('#component'+checkId).append($append);
+                $('#cfile_'+checkId).remove();
+        });
+        return false; 
+    });
+    
+    $('#deletefile-3').click(function(){
+        $append= '<input type="file" name="measurement[]"/>';
+        var boxes = $('input[name=delete3]:checked');       
+        $(boxes).each(function(){
+            var checkId = $(this).attr('id');
+            //alert(checkId);             
+                $('#r'+checkId).append($append);
+                $('#mfile_'+checkId).remove();
         });
         return false; 
     });

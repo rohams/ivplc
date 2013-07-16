@@ -61,7 +61,7 @@ p#confirm { width: 432px; text-align: justify; float: left; }
 .controls a.remove:hover { background-position: -32px -33px; }
 .controls a.remove:active { background-position: -64px -33px; }
 
-#deletefile {
+a.deletefile {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     float: right;
@@ -79,14 +79,14 @@ p#confirm { width: 432px; text-align: justify; float: left; }
     color: #fff; 
     cursor: pointer;
     background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #ec4a0b),color-stop(1, #ad390c));}
-#deletefile:hover {
+a.deletefile:hover {
     border: 1px solid #953403; 
     background: #f15c22; 
     font-weight: bold; 
     color: #fff;  
     text-shadow: 0 -1px 1px #014D68; 
     background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #f15c22),color-stop(1, #f15c22));}
-#deletefile:active{
+a.deletefile:active{
     border: 1px solid #225377; 
     background: #79ae21; 
     font-weight: bold; 
