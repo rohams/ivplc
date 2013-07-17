@@ -282,12 +282,27 @@ class Submissions extends CI_Controller {
                                     	$img = $this->file_parser->images_parser();
 					$cmp = $this->file_parser->components_parser();
 					$msr = $this->file_parser->measurements_parser();
-					
-					$img_error = $this->images->upload_images($new_sub_id, $img);
+					if(isset($post['orig_image_id'])){
+                                            $img_error = $this->images->update_images($pk_sub_id, $new_sub_id, $img, $post['orig_image_id']);
+                                        }
+                                        else{
+                                            $img_error = $this->images->upload_images($new_sub_id, $img);
+                                        }
                                         
-                                        $comp_error=$this->components->update_components($pk_sub_id, $new_sub_id, $cmp, $post['orig_component_id'], $post['component_name']);
+                                        if(isset($post['orig_component_id'])){
+                                            $comp_error=$this->components->update_components($pk_sub_id, $new_sub_id, $cmp, $post['orig_component_id'], $post['component_name']);
+                                        }
+                                        else{
+                                            $comp_error = $this->components->upload_components($new_sub_id, $cmp, $post['component_name']);
+                                        }
+                                        
                                         $components = $this->components->return_vehicle_components($new_sub_id);
-                                        $meas_error = $this->measures->update_measurements($pk_sub_id, $new_sub_id, $msr, $components, $post['orig_measurement_id']);
+                                        if(isset($post['orig_measurement_id'])){                                           
+                                            $meas_error = $this->measures->update_measurements($pk_sub_id, $new_sub_id, $msr, $components, $post['orig_measurement_id']);
+                                        }
+                                        else{
+                                            $meas_error = $this->measures->upload_measurements($new_sub_id, $msr, $components);
+                                        }
                                         
                                         if($comp_error!='success') :
 						$data['error']='upload component error: '.$comp_error;

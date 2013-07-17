@@ -48,6 +48,10 @@
                                                 <?=form_hidden('orig_image_id[]', $image['pk_image_id']);?>
                                             </span>
                                         <?php $i++ ?>
+                                        <?php else : ?>
+                                            <span id="image_<?=$i;?>">
+                                                <?=form_upload(array('name'=>'image[]'));?>
+                                            </span>
                                         <?php endif;?>
                                         </div>
                                     <?php endforeach;?>                                
@@ -55,6 +59,7 @@
                                     <div class="group_member image" id="img<?=$i;?>">
                                     <?=form_label('<span>*</span> Image ' . $i, 'image');?>
                                     <?=form_upload(array('name'=>'image[]'));?>
+                                    </div>
                                 <?php endif ?>
                             </div>
                     </div>

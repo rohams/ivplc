@@ -86,7 +86,7 @@ class Measures extends CI_Model {
             $measurementCount = 0;
 
                                 
-		//check for exisiting files from revision 0
+		//check for exisiting files from previous revision 
                 if(isset($post_orig_measurement_id)){
                     $orig_data = array();
                     $orig_datas = array();
