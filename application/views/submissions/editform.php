@@ -50,8 +50,12 @@
                                         <?php $i++ ?>
                                         <?php endif;?>
                                         </div>
-                                    <?php endforeach;?>
-                                <?php endif ?>                                 
+                                    <?php endforeach;?>                                
+                                <?php else : ?>
+                                    <div class="group_member image" id="img<?=$i;?>">
+                                    <?=form_label('<span>*</span> Image ' . $i, 'image');?>
+                                    <?=form_upload(array('name'=>'image[]'));?>
+                                <?php endif ?>
                             </div>
                     </div>
                     <script>

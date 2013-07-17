@@ -82,41 +82,9 @@ class Measures extends CI_Model {
 
 	    $_FILES = $measurements;
             $new_data = array();
-            $new_datas = array();
 	    $error = 'success';
             $measurementCount = 0;
-            
-	    for($i = 0; $i < count($components); $i++) :
-                for($j = $i + 1; $j < count($components); $j++) :
-			$config['file_name'] = $new_sub_id . '_transfer_'. $components[$i]['pk_component_id'] . '_' . $components[$j]['pk_component_id'];
-			$this->upload->initialize($config); 
-				if(isset($_FILES[$measurementCount])){
-                                    if(! $this->upload->do_upload($measurementCount)){
-                                        if($_FILES[$measurementCount]['error'] != 4) :
-                                            // for other errors show the error
-                                            $error = $this->upload->display_errors();
-                                            return $error;
-                                        else :
-                                            // It is ok if the user decided not to upload any file
-                                            $relative_url = null;
-                                            $measurementCount++;   
-                        		endif;
-                                    //else the upload was successful
-                                    }
-                                    else{
-                                        $measurementCount++;
-                                        $upload_data = $this->upload->data();
-                                        $relative_url = str_replace($_SERVER['DOCUMENT_ROOT'], '', $upload_data['full_path']);                                                                        
-                                    }
-                                    $new_data['fk_sub_id']=$new_sub_id;
-                                    $new_data['fk_componentA_id'] = $components[$i]['pk_component_id'];
-                                    $new_data['fk_componentB_id'] = $components[$j]['pk_component_id'];
-                                    $new_data['file_name']=$upload_data['file_name'];
-                                    $new_data['url']=$relative_url;
-                                    $new_datas[]=$new_data;
-                            }
-                    endfor;
-                endfor;
+
                                 
 		//check for exisiting files from revision 0
                 if(isset($post_orig_measurement_id)){
@@ -142,9 +110,8 @@ class Measures extends CI_Model {
                         endif;
                     endfor;
                 }
-                //insert orig and new into components table
+                //insert original and new files into measurements table
                 $orig_index =0;
-                $new_index =0;
                 $orig_count=count($orig_datas);
                 if(isset($orders)){
                     $orig_order1=$orders[$orig_index]['comp1'];
@@ -160,9 +127,38 @@ class Measures extends CI_Model {
                                 $orig_order2=$orders[$orig_index]['comp2'];
                             }
                         }
-                        else{                           
-                            $query = $this->db->insert('measurements', $new_datas[$new_index]);
-                            $new_index++;
+                        else{
+                            //check for new files to upload
+                            if(isset($_FILES[$measurementCount])){
+                                    $config['file_name'] = $new_sub_id . '_transfer_'. $components[$i]['pk_component_id'] . '_' . $components[$j]['pk_component_id'];
+                                    $this->upload->initialize($config);
+                                    if(! $this->upload->do_upload($measurementCount)){
+                                        if($_FILES[$measurementCount]['error'] != 4) :
+                                            // for other errors show the error
+                                            $error = $this->upload->display_errors();
+                                            return $error;
+                                        else :
+                                            // It is ok if the user decided not to upload any file
+                                            $relative_url = null;
+                                            $measurementCount++;
+                                            $new_data['file_name']=null;
+                        		endif;
+                                    //else the upload was successful
+                                    }
+                                    else{
+                                        $measurementCount++;
+                                        $upload_data = $this->upload->data();
+                                        $relative_url = str_replace($_SERVER['DOCUMENT_ROOT'], '', $upload_data['full_path']);
+                                        $new_data['file_name']=$upload_data['file_name'];
+                                    }
+                                    $new_data['fk_sub_id']=$new_sub_id;                                                                   
+                                    $new_data['url']=$relative_url;
+                                    $new_data['fk_componentA_id'] = $components[$i]['pk_component_id'];
+                                    $new_data['fk_componentB_id'] = $components[$j]['pk_component_id']; 
+                            }
+                                        
+                            $query = $this->db->insert('measurements', $new_data);
+
                         }                   
                     endfor;
                 endfor;
