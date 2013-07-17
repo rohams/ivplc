@@ -21,7 +21,7 @@
 						<td>
 							<div class="mask">
 								<a class="ext" href="<?=site_url();?>admin/measurements/<?=$vehicle['pk_sub_id'];?>">
-									<img class="hero" src="<?=base_url() . $vehicle['images'][0];?>"/>
+									<img class="hero" src="<?=base_url() . $vehicle['images'][0]['url'];?>"/>
 								</a>
 							</div>
 						</td>
@@ -66,7 +66,7 @@
 						<td>
 							<div class="mask">
 								<a class="ext" href="<?=site_url();?>admin/measurements/<?=$vehicle['pk_sub_id'];?>">
-									<img class="hero" src="<?=base_url() . $vehicle['images'][0];?>"/>
+									<img class="hero" src="<?=base_url() . $vehicle['images'][0]['url'];?>"/>
 								</a>
 							</div>
 						</td>
@@ -111,7 +111,7 @@
 						<td>
 							<div class="mask">
 								<a class="ext" href="<?=site_url();?>measurements/<?=$vehicle['pk_sub_id'];?>">
-									<img class="hero" src="<?=base_url() . $vehicle['images'][0];?>"/>
+									<img class="hero" src="<?=base_url() . $vehicle['images'][0]['url'];?>"/>
 								</a>
 							</div>
 						</td>
@@ -153,7 +153,7 @@
 						<td>
 							<div class="mask">
 								<a class="ext" href="<?=site_url();?>admin/measurements/<?=$vehicle['pk_sub_id'];?>">
-									<img class="hero" src="<?=base_url() . $vehicle['images'][0];?>"/>
+									<img class="hero" src="<?=base_url() . $vehicle['images'][0]['url'];?>"/>
 								</a>
 							</div>
 						</td>

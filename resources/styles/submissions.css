@@ -6,7 +6,7 @@ form#submit_general legend { font: bold 14px/18px Helvetica; display: block; mar
 form#submit_general label { background: black; height: auto; width: 100px; padding-right: 10px; float: left; clear: both; font: 12px/42px Helvetica; color: white; text-align: right; }
 form#submit_general label span { font-weight: bold; color: white; }
 form#submit_general .group_member, form#submit_general .measurement { float: left; clear: both; margin-bottom: 20px; }
-
+.car_image {float: left; margin: 10px 0px 10px 10px; }
 
 /* FORM INPUTS */
 form#submit_general input[type="text"] {
@@ -17,6 +17,7 @@ form#submit_general input[type="text"] {
 }
 form#submit_general input[type="text"]:focus { border-color: #0d58be; }
 form#submit_general input[type="checkbox"] { float: left; margin: 3px 8px 10px 12px; }
+form#submit_general input[type="button"] { float: left; margin: 10px 0px 10px 10px; }
 form#submit_general select { float: left; margin: 10px 0 10px 10px; }
 form#submit_general input[type="file"] { float: left; margin: 10px 0 10px 10px; }
 
@@ -45,6 +46,7 @@ form#submit_general input[type="submit"]:active { background-position: -160px 0;
 p.note { font-style: italic; color: #999; float: left; clear: both; }
 p#terms { width: 432px; text-align: justify; }
 p#confirm { width: 432px; text-align: justify; float: left; }
+a.filename {float: left; margin: 8px 0px 10px 5px;}
 
 
 /* FORM CONTROLS */
@@ -60,39 +62,6 @@ p#confirm { width: 432px; text-align: justify; float: left; }
 .controls a.remove { background-position: 0 -33px; opacity: 0.25; }
 .controls a.remove:hover { background-position: -32px -33px; }
 .controls a.remove:active { background-position: -64px -33px; }
-
-a.deletefile {
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    float: right;
-    height: 15px;
-    line-height: 15px;
-    margin: 3px 10px 0 0;
-    padding: 0.6em;
-    position:a;
-    right: 0;
-    top: 0;
-    z-index: 10;
-    border: 1px solid #953403; 
-    background: #2567ab;
-    font-weight: bold; 
-    color: #fff; 
-    cursor: pointer;
-    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #ec4a0b),color-stop(1, #ad390c));}
-a.deletefile:hover {
-    border: 1px solid #953403; 
-    background: #f15c22; 
-    font-weight: bold; 
-    color: #fff;  
-    text-shadow: 0 -1px 1px #014D68; 
-    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #f15c22),color-stop(1, #f15c22));}
-a.deletefile:active{
-    border: 1px solid #225377; 
-    background: #79ae21; 
-    font-weight: bold; 
-    color: #fff; 
-    text-shadow: 0 -1px 1px #225377; 
-    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #bc770f),color-stop(1, #e6590c));}
 
 /* INDEX */
 #submit_index ul { margin-bottom: 20px; list-style: inside square; }

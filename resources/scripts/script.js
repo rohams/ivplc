@@ -12,44 +12,31 @@ $(document).ready(function(){
             return false; 
 	});
 
-/* DELETE FILES IN EDITFORM*/
-  /*  $('#deletefile-1').click(function(){
-        $append= '<input type="file" name="component[]"/>';
-        var boxes = $('input[name=delete]:checked');       
-        $(boxes).each(function(){
-            var checkId = $(this).attr('id');
-            //alert(checkId);             
-                $('#component'+checkId).append($append);
-                $('#file_'+checkId).remove();
-        });
-        return false; 
-    });
-    */
-    $('#deletefile-2').click(function(){
-        $append= '<input type="file" name="component[]"/>';
-        var boxes = $('input[name=delete2]:checked');       
-        $(boxes).each(function(){
-            var checkId = $(this).attr('id');
-            //alert(checkId);             
-                $('#component'+checkId).append($append);
-                $('#cfile_'+checkId).remove();
-        });
+   
+     $('form input[type=button][name=delete1]').click(function(){ 
+        $append= '<input type="file" name="image[]"/>';
+        var checkId = $(this).attr('id');                     
+        $('#img'+checkId).append($append);
+        $('#image_'+checkId).remove();
         return false; 
     });
     
-    $('#deletefile-3').click(function(){
-        $append= '<input type="file" name="measurement[]"/>';
-        var boxes = $('input[name=delete3]:checked');       
-        $(boxes).each(function(){
-            var checkId = $(this).attr('id');
-            //alert(checkId);             
-                $('#r'+checkId).append($append);
-                $('#mfile_'+checkId).remove();
-        });
+    $('form input[type=button][name=delete2]').click(function(){ 
+        $append= '<input type="file" name="component[]"/>';
+        var checkId = $(this).attr('id');                     
+        $('#component'+checkId).append($append);
+        $('#cfile_'+checkId).remove();
         return false; 
     });
 
-
+    $('form input[type=button][name=delete3]').click(function(){ 
+        $append= '<input type="file" name="measurement[]"/>';
+        var checkId = $(this).attr('id');                     
+        $('#r'+checkId).append($append);
+        $('#mfile_'+checkId).remove();
+        return false; 
+    });
+    
 /* GROUPS DEFAULT IMAGE*/
 	$("#groups .member img").error(function(){
 		$(this).attr('src', '../resources/styles/defaults/groups.png');
@@ -105,7 +92,7 @@ $(document).ready(function(){
 
 
 /* IMAGES INCR?DECR */
-	$imgCounter = 2;
+	$imgCounter = m_id;
 
 	$('#incrementImage').click(function(){
 		if($imgCounter <= 10){

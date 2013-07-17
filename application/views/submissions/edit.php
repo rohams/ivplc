@@ -19,7 +19,7 @@
 					<tr>
 						<td>
 							<div class="mask">
-									<img class="hero" src="<?=base_url() . $vehicle['images'][0];?>"/>
+									<img class="hero" src="<?=base_url() . $vehicle['images'][0]['url'];?>"/>
 								</a>
 							</div>
 						</td>

@@ -133,7 +133,7 @@ class Submissions extends CI_Controller {
 					$cmp = $this->file_parser->components_parser();
 					$msr = $this->file_parser->measurements_parser();
 					
-					$images = $this->images->upload_images($vehicle_sub_id, $img);
+					$img_error = $this->images->upload_images($vehicle_sub_id, $img);
 					$comp_error = $this->components->upload_components($vehicle_sub_id, $cmp, $post['component_name']);
                                         $components = $this->components->return_vehicle_components($vehicle_sub_id);
 					$meas_error = $this->measures->upload_measurements($vehicle_sub_id, $msr, $components);
@@ -159,6 +159,14 @@ class Submissions extends CI_Controller {
                                                 $this->load->view('nav', $data);
                                                 $this->load->view('submissions/vehicle', $data);		
                                                 $this->load->view('footer', $data);
+                                                
+//                                        elseif($img_error!='success') :
+//						$data['error']='upload image error: '.$img_error;
+//                                                $this->vehicles->reject($vehicle_sub_id);
+//                                                $this->load->view('header', $data);
+//                                                $this->load->view('nav', $data);
+//                                                $this->load->view('submissions/vehicle', $data);		
+//                                                $this->load->view('footer', $data);
 					else:
 					redirect('submit/chooser');
                                         endif;                              
@@ -257,7 +265,7 @@ class Submissions extends CI_Controller {
 			'file' => $this->session->userdata('file')
 			);
                 //In order to expand the upload file list we need to pass this id to script.js
-                $data['id']=count($data['vehicle']['components'])-2;
+                $data['id'] = count($data['vehicle']['components'])-2;
                 if($this->input->post()) :
                         $submit = $this->input->post('submit');
                         $post = $this->input->post();
@@ -275,10 +283,11 @@ class Submissions extends CI_Controller {
 					$cmp = $this->file_parser->components_parser();
 					$msr = $this->file_parser->measurements_parser();
 					
-					$images = $this->images->upload_images($new_sub_id, $img);
+					$img_error = $this->images->upload_images($new_sub_id, $img);
                                         
                                         $comp_error=$this->components->update_components($pk_sub_id, $new_sub_id, $cmp, $post['orig_component_id'], $post['component_name']);
                                         $components = $this->components->return_vehicle_components($new_sub_id);
+                                     // $meas_error = $this->measures->updade_measurements(pk_sub_id, $new_sub_id, $msr, $components);
 					$meas_error = $this->measures->upload_measurements($new_sub_id, $msr, $components);
                                         
                                         if($comp_error!='success') :
@@ -296,6 +305,16 @@ class Submissions extends CI_Controller {
                                                 $this->load->view('nav', $data);
                                                 $this->load->view('submissions/editform', $data);		
                                                 $this->load->view('footer', $data);
+                                                
+//                                                
+//                                        elseif($img_error!='success') :
+//						$data['error']='upload image error: '.$img_error;
+//                                                $this->vehicles->reject($new_sub_id);
+//                                                $this->load->view('header', $data);
+//                                                $this->load->view('nav', $data);
+//                                                $this->load->view('submissions/editform', $data);		
+//                                                $this->load->view('footer', $data);
+                                                
 					else:
                                                 redirect('submit/edit/');
                                         endif;                              

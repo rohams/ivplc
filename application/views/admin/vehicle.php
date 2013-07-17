@@ -16,7 +16,7 @@
 	<!-- Photo Gallery -->
 	<div id="slider" class="nivoSlider">
 		<?php foreach($vehicle['images'] as $image) : ?>
-			<img src="<?=base_url() . $image;?>"/>
+			<img src="<?=base_url() . $image['url'];?>"/>
 		<?php endforeach;?>
 	</div>
 	

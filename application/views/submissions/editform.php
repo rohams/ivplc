@@ -25,24 +25,39 @@
 
                 <hr>
                 <br>
-                <a class="deletefile" id="deletefile-1" href="#">Remove File(s)</a>
+                <!-- <a class="deletefile" id="image" href="#">Remove File(s)</a> -->
 		<!-- IMAGES -->
 		<?=form_fieldset('Images');?>
-                        <div class="controls">
-                            <a class="add" id="incrementImage" href="#">Add Image</a>
-                            <a class="remove" id="decrementImage" href="#">Remove Image</a>
-			</div>
-                        <p class="note">Remove old files in order to replace them with new files.</p>
-			<div class="group" id="images">
-				<div class="group_member" id="image1">
-					<?=form_label('<span>*</span> Image 1', 'image');?>                                                                                                   
-					<?=form_upload(array('name'=>'image[]'));?>
-				</div>
-			</div>
+                
+                    <div class="controls">
+                        <a class="add" id="incrementImage" href="#">Add Image</a>
+                        <a class="remove" id="decrementImage" href="#">Remove Image</a>
+                    </div>
+                    <p class="note">Remove old files in order to replace them with new files.</p>
+
+                    <div class="group" id="images">
+                            <div class="group_member" id="image1">
+                                <?php $i=1 ?>
+                                <?php if(isset($vehicle['images'])) : ?>   
+                                    <?php foreach($vehicle['images'] as $image) : ?>
+                                        <div class="group_member image" id="img<?=$i;?>">
+                                        <?=form_label('<span>*</span> Image ' . $i, 'image');?>                                                
+                                        <?php if($image['url'] != NULL) : ?>                
+                                            <span id="image_<?=$i;?>">
+                                                <input type="button" id="<?=$i;?>" name="delete1" value="Remove Image"><img class="car_image" src="<?=base_url() . substr($image['url'],1);?>" width="150" height="120" align="top"></a>
+                                                <?=form_hidden('orig_image_id[]', $image['pk_image_id']);?>
+                                            </span>
+                                        <?php $i++ ?>
+                                        <?php endif;?>
+                                        </div>
+                                    <?php endforeach;?>
+                                <?php endif ?>                                 
+                            </div>
+                    </div>
+                    <script>
+                            var m_id = <?php echo $i; ?>;
+                    </script>
 		<?=form_fieldset_close();?>
-                <hr>
-                <br>
-                <a class="deletefile" id="deletefile-2" href="#">Remove File(s)</a>
 		<!-- COMPONENTS -->
 		<?=form_fieldset('Components');?>	
 			<div class="controls">
@@ -65,7 +80,7 @@
                                                 <?=form_input(array('name'=>'component_name[]', 'maxlength'=>'20', 'value'=>set_value('component_name[]', $component['name'])));?>
                                                 <?php if($component['url'] != NULL) : ?>
                                                     <span id="cfile_<?=$i;?>">
-                                                        "<input type="checkbox" id="<?=$i;?>" name="delete2"><a href="<?=base_url() . substr($component['url'],1);?>"><?=$component['file_name'];?></a>
+                                                        <input type="button" id="<?=$i;?>" name="delete2" value="Remove File"><a class="filename" href="<?=base_url() . substr($component['url'],1);?>"><?=$component['file_name'];?></a>
                                                         <?=form_hidden('orig_component_id[]', $component['pk_component_id']);?>
                                                     </span>
                                                 <?php else : ?>
@@ -86,10 +101,7 @@
                             
 			</div>
 		<?=form_fieldset_close();?>
-                        
-                <hr>
-                <br>
-                <a class="deletefile" id="deletefile-3" href="#">Remove File(s)</a>
+
 		<!-- MEASUREMENTS -->
 		<?=form_fieldset('Measurements');?>
 			<p class="note">Please attach the s-parameter files associated between the two referenced points.<br> (Remove old files in order to replace them with new files)</p>
@@ -105,7 +117,7 @@
                                                 <?php if($vehicle['ni_measurements'][$j-$i-1]['url'] != NULL) : ?>
                                                         <?=form_label('Component ' . $j, 'measurement[]', array('class'=>'component' . $j));?>
                                                         <span id="mfile_<?=$index;?>">            
-                                                            "<input type="checkbox" id="<?=$index;?>" name="delete3"><a href="<?=base_url() . substr($vehicle['ni_measurements'][$j-$i-1]['url'],1);?>"><?=$vehicle['ni_measurements'][$j-$i-1]['file_name'];?></a>
+                                                            <input type="button" id="<?=$index;?>" name="delete3" value="Remove File"><a class="filename" href="<?=base_url() . substr($vehicle['ni_measurements'][$j-$i-1]['url'],1);?>"><?=$vehicle['ni_measurements'][$j-$i-1]['file_name'];?></a>
                                                             <?=form_hidden('orig_measurement_id[]', $vehicle['ni_measurements'][$j-$i-1]['pk_measurement_id']);?>
                                                         </span>
                                                     <?php else : ?>
