@@ -71,7 +71,7 @@ class Measures extends CI_Model {
     }
     
     /* This function creates measurements that are submitted through the edit form*/
-    function update_measurements($orig_sub_id,$new_sub_id, $components, $measurements, $post_orig_measurement_id, $post_comp_name){ 
+    function update_measurements($orig_sub_id,$new_sub_id, $measurements, $components, $post_orig_measurement_id){ 
         
             $config = array(
                     'upload_path' => './uploads/transfer_functions/',
@@ -84,21 +84,22 @@ class Measures extends CI_Model {
             $new_data = array();
             $new_datas = array();
 	    $error = 'success';
+            $measurementCount = 0;
+            
 	    for($i = 0; $i < count($components); $i++) :
                 for($j = $i + 1; $j < count($components); $j++) :
-			$config['file_name'] = $fk_sub_id . '_transfer_'. $components[$i]['pk_component_id'] . '_' . $components[$j]['pk_component_id'];
+			$config['file_name'] = $new_sub_id . '_transfer_'. $components[$i]['pk_component_id'] . '_' . $components[$j]['pk_component_id'];
 			$this->upload->initialize($config); 
-				
-                                    if(! $this->upload->do_upload($i)){
-                                        if($_FILES[$i]['error'] != 4) :
+				if(isset($_FILES[$measurementCount])){
+                                    if(! $this->upload->do_upload($measurementCount)){
+                                        if($_FILES[$measurementCount]['error'] != 4) :
                                             // for other errors show the error
                                             $error = $this->upload->display_errors();
                                             return $error;
                                         else :
                                             // It is ok if the user decided not to upload any file
                                             $relative_url = null;
-                                            $measurementCount++;
-                                            $file_name = null;
+                                            $measurementCount++;   
                         		endif;
                                     //else the upload was successful
                                     }
@@ -113,6 +114,7 @@ class Measures extends CI_Model {
                                     $new_data['file_name']=$upload_data['file_name'];
                                     $new_data['url']=$relative_url;
                                     $new_datas[]=$new_data;
+                            }
                     endfor;
                 endfor;
                                 
@@ -125,15 +127,18 @@ class Measures extends CI_Model {
                     for($i = 0; $i < count($post_orig_measurement_id); $i++) :
                         $query=  $this->db->query("select url, file_name from measurements where pk_measurement_id= ".$post_orig_measurement_id[$i]."");
                          if( $query->num_rows() > 0 ) : 
-                            $row = $query->row_array(); 
-                            $orig_data['url']=$row['url'];
-                            $orig_data['file_name']=$row['file_name'];
-                            $orig_data['fk_sub_id']=$new_sub_id;
-                            $orig_datas[]=$orig_data;
-                            list ($comp1, $comp2)=$this->measurement_order($orig_sub_id, $post_orig_comp_id[$i]);
+                            $row = $query->row_array();
+                            list ($comp1, $comp2)=$this->measurement_order($orig_sub_id, $post_orig_measurement_id[$i]);
                             $order['comp1'] = $comp1;
                             $order['comp2'] = $comp2;
                             $orders[]= $order;
+                            $orig_data['url']=$row['url'];
+                            $orig_data['file_name']=$row['file_name'];
+                            $orig_data['fk_sub_id']=$new_sub_id;
+                            $orig_data['fk_componentA_id'] = $components[$comp1]['pk_component_id'];
+                            $orig_data['fk_componentB_id'] = $components[$comp2]['pk_component_id'];
+                            $orig_datas[]=$orig_data;
+
                         endif;
                     endfor;
                 }
@@ -155,7 +160,7 @@ class Measures extends CI_Model {
                                 $orig_order2=$orders[$orig_index]['comp2'];
                             }
                         }
-                        else{
+                        else{                           
                             $query = $this->db->insert('measurements', $new_datas[$new_index]);
                             $new_index++;
                         }                   

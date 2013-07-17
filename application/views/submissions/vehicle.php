@@ -8,6 +8,10 @@
                 <script>
 			var id = 0;
 		</script>
+                
+                <script>
+			var m_id = 2;
+		</script>
 	
 	<?=form_open_multipart('submit/vehicle', array('id'=>'submit_general'));?>
 	

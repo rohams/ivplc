@@ -111,20 +111,20 @@
                             <?php for($i = 1; $i <= $id+1; $i++) :?>
 				<div class="measurement" id="measurement<?php echo $i ?>">
                                         <h2 class="measurement<?php echo $i ?>"><?php echo 'Component ' . $i ?></h2>
-                                        <?php for($j = $i+1; $j <= $id+2; $j++) :?>
-                                            <?php $index++ ?>
+                                        <?php for($j = $i+1; $j <= $id+2; $j++) :?>                                          
                                             <div class="reference" id="r<?php echo $index ?>">
-                                                <?php if($vehicle['ni_measurements'][$j-$i-1]['url'] != NULL) : ?>
+                                                <?php if($vehicle['ni_measurements'][$index]['url'] != NULL) : ?>
                                                         <?=form_label('Component ' . $j, 'measurement[]', array('class'=>'component' . $j));?>
                                                         <span id="mfile_<?=$index;?>">            
-                                                            <input type="button" id="<?=$index;?>" name="delete3" value="Remove File"><a class="filename" href="<?=base_url() . substr($vehicle['ni_measurements'][$j-$i-1]['url'],1);?>"><?=$vehicle['ni_measurements'][$j-$i-1]['file_name'];?></a>
-                                                            <?=form_hidden('orig_measurement_id[]', $vehicle['ni_measurements'][$j-$i-1]['pk_measurement_id']);?>
+                                                            <input type="button" id="<?=$index;?>" name="delete3" value="Remove File"><a class="filename" href="<?=base_url() . substr($vehicle['ni_measurements'][$index]['url'],1);?>"><?=$vehicle['ni_measurements'][$index]['file_name'];?></a>
+                                                            <?=form_hidden('orig_measurement_id[]', $vehicle['ni_measurements'][$index]['pk_measurement_id']);?>
                                                         </span>
                                                     <?php else : ?>
                                                         <?=form_label('Component ' . $j, 'measurement[]', array('class'=>'component' . $j));?>
                                                         <?=form_upload(array('name'=>'measurement[]'));?>
                                                     <?php endif;?>
                                             </div>
+                                        <?php $index++ ?>
                                         <?php endfor;?>
 				</div>
                             <?php endfor;?>

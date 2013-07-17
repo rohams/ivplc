@@ -287,8 +287,7 @@ class Submissions extends CI_Controller {
                                         
                                         $comp_error=$this->components->update_components($pk_sub_id, $new_sub_id, $cmp, $post['orig_component_id'], $post['component_name']);
                                         $components = $this->components->return_vehicle_components($new_sub_id);
-                                     // $meas_error = $this->measures->updade_measurements(pk_sub_id, $new_sub_id, $msr, $components);
-					$meas_error = $this->measures->upload_measurements($new_sub_id, $msr, $components);
+                                        $meas_error = $this->measures->update_measurements($pk_sub_id, $new_sub_id, $msr, $components, $post['orig_measurement_id']);
                                         
                                         if($comp_error!='success') :
 						$data['error']='upload component error: '.$comp_error;
