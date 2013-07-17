@@ -60,72 +60,79 @@ class Measures extends CI_Model {
         
     /* UPDATE MEASURMENTS*/
     
-    function measurement_order($orig_sub_id, $component_id){
-        $query = $this->db->query("select min(pk_component_id) as min_component_id from components where fk_sub_id= ".$orig_sub_id."");
+    function measurement_order($orig_sub_id, $measurement_id){
+        $query = $this->db->query("select fk_componentA_id, fk_componentB_id from measurements where pk_measurement_id= ".$measurement_id."");
         $row = $query->row_array();
-        $min = $row['min_component_id'];
-        $order = $component_id-$min;
-        return $order;        
+        $compA = $row['fk_componentA_id'];
+        $compB = $row['fk_componentB_id'];
+        $comp1 = $this->components->component_order($orig_sub_id, $compA);
+        $comp2 = $this->components->component_order($orig_sub_id, $compB); 
+        return array ($comp1, $comp2);        
     }
     
     /* This function creates measurements that are submitted through the edit form*/
-    function update_measurements($orig_sub_id,$new_sub_id, $components, $post_orig_comp_id, $post_comp_name){ 
+    function update_measurements($orig_sub_id,$new_sub_id, $components, $measurements, $post_orig_measurement_id, $post_comp_name){ 
         
             $config = array(
-                    'upload_path' => './uploads/noise_files/',
+                    'upload_path' => './uploads/transfer_functions/',
                     'allowed_types' => 'xlsx|xls|zip|m|txt|rtf|doc',
                     'max_size' => '2048',
                     'overwrite' => true
             );
 
-	    $_FILES = $components;
+	    $_FILES = $measurements;
             $new_data = array();
             $new_datas = array();
 	    $error = 'success';
 	    for($i = 0; $i < count($components); $i++) :
-			$config['file_name'] = $new_sub_id . '_noise_'. $i;
+                for($j = $i + 1; $j < count($components); $j++) :
+			$config['file_name'] = $fk_sub_id . '_transfer_'. $components[$i]['pk_component_id'] . '_' . $components[$j]['pk_component_id'];
 			$this->upload->initialize($config); 
 				
                                     if(! $this->upload->do_upload($i)){
-                                        if($_FILES[$i]['error'] != 4 || $this->upload->display_errors() !='') :
+                                        if($_FILES[$i]['error'] != 4) :
                                             // for other errors show the error
                                             $error = $this->upload->display_errors();
                                             return $error;
                                         else :
                                             // It is ok if the user decided not to upload any file
-                                            $upload_data = $this->upload->data();   
-                                            $new_data['fk_sub_id']=$new_sub_id;
-                                            //$new_data['name']=$post_comp_name[$i];
-                                            $new_data['file_name']=null;
-                                            $new_data['url']=null;
-                                            $new_datas[]=$new_data;
+                                            $relative_url = null;
+                                            $measurementCount++;
+                                            $file_name = null;
                         		endif;
                                     //else the upload was successful
                                     }
-                                    else{    
+                                    else{
+                                        $measurementCount++;
                                         $upload_data = $this->upload->data();
                                         $relative_url = str_replace($_SERVER['DOCUMENT_ROOT'], '', $upload_data['full_path']);                                                                        
-                                        $new_data['fk_sub_id']=$new_sub_id;
-                                        //$new_data['name']=$post_comp_name[$i];
-                                        $new_data['file_name']=$upload_data['file_name'];
-                                        $new_data['url']=str_replace('/ivplc', '', $relative_url);
-                                        $new_datas[]=$new_data;
-                                    }                                                                                                            
-		endfor;
+                                    }
+                                    $new_data['fk_sub_id']=$new_sub_id;
+                                    $new_data['fk_componentA_id'] = $components[$i]['pk_component_id'];
+                                    $new_data['fk_componentB_id'] = $components[$j]['pk_component_id'];
+                                    $new_data['file_name']=$upload_data['file_name'];
+                                    $new_data['url']=$relative_url;
+                                    $new_datas[]=$new_data;
+                    endfor;
+                endfor;
+                                
 		//check for exisiting files from revision 0
-                if(isset($post_orig_comp_id)){
+                if(isset($post_orig_measurement_id)){
                     $orig_data = array();
                     $orig_datas = array();
+                    $order = array();
                     $orders = array();
-                    for($i = 0; $i < count($post_orig_comp_id); $i++) :
-                        $query=  $this->db->query("select url, file_name from components where pk_component_id= ".$post_orig_comp_id[$i]."");
+                    for($i = 0; $i < count($post_orig_measurement_id); $i++) :
+                        $query=  $this->db->query("select url, file_name from measurements where pk_measurement_id= ".$post_orig_measurement_id[$i]."");
                          if( $query->num_rows() > 0 ) : 
                             $row = $query->row_array(); 
                             $orig_data['url']=$row['url'];
                             $orig_data['file_name']=$row['file_name'];
                             $orig_data['fk_sub_id']=$new_sub_id;
                             $orig_datas[]=$orig_data;
-                            $order=$this->component_order($orig_sub_id, $post_orig_comp_id[$i]);
+                            list ($comp1, $comp2)=$this->measurement_order($orig_sub_id, $post_orig_comp_id[$i]);
+                            $order['comp1'] = $comp1;
+                            $order['comp2'] = $comp2;
                             $orders[]= $order;
                         endif;
                     endfor;
@@ -135,23 +142,25 @@ class Measures extends CI_Model {
                 $new_index =0;
                 $orig_count=count($orig_datas);
                 if(isset($orders)){
-                    $orig_order=$orders[$orig_index];
+                    $orig_order1=$orders[$orig_index]['comp1'];
+                    $orig_order2=$orders[$orig_index]['comp2'];
                 }
-                for ($i =0; $i <(count($new_datas)+count($orig_datas));$i++):    
-                    if($i == $orig_order){
-                        $orig_datas[$orig_index]['name']=$post_comp_name[$i];
-                        $query = $this->db->insert('components', $orig_datas[$orig_index]);
-                        $orig_index++;
-                        if($orig_index < $orig_count){
-                            $orig_order =$orders[$orig_index];
+                 for($i = 0; $i < count($components); $i++) :
+                    for($j = $i + 1; $j < count($components); $j++) :
+                        if(($i == $orig_order1) and ($j == $orig_order2)){
+                            $query = $this->db->insert('measurements', $orig_datas[$orig_index]);
+                            $orig_index++;
+                            if($orig_index < $orig_count){
+                                $orig_order1=$orders[$orig_index]['comp1'];
+                                $orig_order2=$orders[$orig_index]['comp2'];
+                            }
                         }
-                    }
-                    else{
-                        $new_datas[$new_index]['name']=$post_comp_name[$i];
-                        $query = $this->db->insert('components', $new_datas[$new_index]);
-                        $new_index++;
-                    }                   
-                endfor;                
+                        else{
+                            $query = $this->db->insert('measurements', $new_datas[$new_index]);
+                            $new_index++;
+                        }                   
+                    endfor;
+                endfor;
             return $error;
     }
     

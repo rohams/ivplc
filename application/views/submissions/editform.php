@@ -25,7 +25,7 @@
 
                 <hr>
                 <br>
-                <!-- <a class="deletefile" id="image" href="#">Remove File(s)</a> -->
+
 		<!-- IMAGES -->
 		<?=form_fieldset('Images');?>
                 
