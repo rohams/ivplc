@@ -162,13 +162,22 @@ class Submissions extends CI_Controller {
                                                 $this->load->view('submissions/vehicle', $data);		
                                                 $this->load->view('footer', $data);
                                                 
-//                                        elseif($mnl_error!='success') :
-//						$data['error']='upload manual error: '.$img_error;
-//                                                $this->vehicles->reject($vehicle_sub_id);
-//                                                $this->load->view('header', $data);
-//                                                $this->load->view('nav', $data);
-//                                                $this->load->view('submissions/vehicle', $data);		
-//                                                $this->load->view('footer', $data);
+                                        elseif($img_error!='success' && $img_error!='') :
+						$data['error']='upload image error: '.$img_error;
+                                                $this->vehicles->reject($vehicle_sub_id);
+                                                $this->load->view('header', $data);
+                                                $this->load->view('nav', $data);
+                                                $this->load->view('submissions/vehicle', $data);		
+                                                $this->load->view('footer', $data);
+                                                
+                                        elseif($mnl_error!='success' && $mnl_error!='') :
+						$data['error']='upload guideline error: '.$img_error;
+                                                $this->vehicles->reject($vehicle_sub_id);
+                                                $this->load->view('header', $data);
+                                                $this->load->view('nav', $data);
+                                                $this->load->view('submissions/vehicle', $data);		
+                                                $this->load->view('footer', $data);
+                                                
 					else:
 					redirect('submit/chooser');
                                         endif;                              
