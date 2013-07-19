@@ -17,39 +17,39 @@ class Images extends CI_Model {
 	    $_FILES = $images;
 	    $error = 'success';
 	    for($i = 0; $i < count($images); $i++) :
-			$config['file_name'] = $fk_sub_id . '_image_'.$i;
-			$this->upload->initialize($config); 
-                        if(! $this->upload->do_upload($i)){
-                            if($_FILES[$i]['error'] != 4) :
-                                // for other errors show the error
-                                $error = $this->upload->display_errors();
-                                return $error;
-                            else :
-                                $upload_data = $this->upload->data();   
-                                $data['fk_sub_id']=$fk_sub_id;
-                                $new_data['url']=null;                                                                 
-                            endif;
-                        }
-                        else{
-                            $upload_data = $this->upload->data();
-                            $relative_url = str_replace($_SERVER['DOCUMENT_ROOT'], '', $upload_data['full_path']);
+                    $config['file_name'] = $fk_sub_id . '_image_'.$i;
+                    $this->upload->initialize($config); 
+                    if(! $this->upload->do_upload($i)){
+                        if($_FILES[$i]['error'] != 4) :
+                            // for other errors show the error
+                            $error = $this->upload->display_errors();
+                            return $error;
+                        else :
+                            $upload_data = $this->upload->data();   
+                            $data['fk_sub_id']=$fk_sub_id;
+                            $data['url']=null;                                                                 
+                        endif;
+                    }
+                    else{
+                        $upload_data = $this->upload->data();
+                        $relative_url = str_replace($_SERVER['DOCUMENT_ROOT'], '', $upload_data['full_path']);
 
-                            $resize = array(
-                                    'image_library' => 'gd2',
-                                    'source_image' => str_replace('/ivplc', '', $relative_url),
-                                    'maintain_ratio' => TRUE,
-                                    'width' => '920'
-                            );
+                        $resize = array(
+                                'image_library' => 'gd2',
+                                'source_image' => str_replace('/ivplc', '', $relative_url),
+                                'maintain_ratio' => TRUE,
+                                'width' => '920'
+                        );
 
-                            $this->image_lib->initialize($resize);
-                            $this->image_lib->resize();
+                        $this->image_lib->initialize($resize);
+                        $this->image_lib->resize();
 
-                            $data = array(
-                                    'fk_sub_id' => $fk_sub_id,
-                                    'url' => str_replace('/ivplc', '', $relative_url)
-                            );
-                        }
-			$query = $this->db->insert('images', $data);
+                        $data = array(
+                                'fk_sub_id' => $fk_sub_id,
+                                'url' => str_replace('/ivplc', '', $relative_url)
+                        );
+                    }
+                    $query = $this->db->insert('images', $data);
 		endfor;
     }  
 
@@ -62,7 +62,6 @@ class Images extends CI_Model {
         return $order;        
     }
     
-    /* This function creates components that are submitted through the edit form*/
     function update_images($orig_sub_id,$new_sub_id, $images, $post_orig_image_id){ 
         
             $config = array(
@@ -77,7 +76,7 @@ class Images extends CI_Model {
             $new_datas = array();
 	    $error = 'success';
 	    for($i = 0; $i < count($images); $i++) :
-			$config['file_name'] = $new_sub_id . '_noise_'. $i;
+			$config['file_name'] = $new_sub_id . '_image_'. $i;
 			$this->upload->initialize($config); 
 				
                                     if(! $this->upload->do_upload($i)){

@@ -75,23 +75,23 @@
                     <p class="note">Remove old file in order to replace it with a new file.</p>
 
                     <div class="group" id="manual">
-                            <div class="group_member" id="manual1">
-                                <?php if(isset($vehicle['manual'])) : ?>   
+                            <div class="group_member" id="mnl1">
+                                <?php if(isset($vehicle['manuals'])) : ?>   
                                         <?=form_label('Guideline ', 'manual');?>                                                
-                                        <?php if($vehicle['manual']['url'] != NULL) : ?>                
-                                            <span id="m_1">
-                                                <input type="button" id="1" name="delete0" value="Remove File"><a class="manual" src="<?=base_url() . substr($manual['url'],1);?>"><?=$vehicle['manual']['file_name'];?></a>
-                                                <?=form_hidden('orig_image_id[]', $image['pk_image_id']);?>
+                                        <?php if($vehicle['manuals'][0]['url'] != NULL) : ?>                
+                                            <span id="manual_1">
+                                                <input type="button" id="1" name="delete0" value="Remove File"><a class="filename" href="<?=base_url() . substr($vehicle['manuals'][0]['url'],1);?>"><?=$vehicle['manuals'][0]['file_name'];?></a>
+                                                <?=form_hidden('orig_manual_id[]', $vehicle['manuals'][0]['pk_manual_id']);?>
                                             </span>
                                         <?php else : ?>
                                             <span id="manual_1">
-                                                <?=form_upload(array('name'=>'manual'));?>
+                                                <?=form_upload(array('name'=>'manual[]'));?>
                                             </span>
                                         <?php endif;?>                                          
                                 <?php else : ?>
                                     <div class="group_member manual" id="manual1">
                                     <?=form_label('Guideline ', 'manual');?>  
-                                    <?=form_upload(array('Guideline'=>'manual'));?>
+                                    <?=form_upload(array('name'=>'manual[]'));?>
                                     </div>
                                 <?php endif ?>
                             </div>

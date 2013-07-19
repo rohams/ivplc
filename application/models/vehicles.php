@@ -34,6 +34,7 @@ class Vehicles extends CI_Model {
 				$car['year'] = $vehicle['year'];
                                 $car['submitted'] = $vehicle['submitted'];
                                 $car['revision'] = $vehicle['revision'];
+                                $car['manuals'] = $this->manuals->return_vehicle_manuals($vehicle['pk_sub_id']);
 				$car['images'] = $this->images->return_vehicle_images($vehicle['pk_sub_id']);
 				$car['components'] = $this->components->return_vehicle_components_indexed($vehicle['pk_sub_id']);
 				$car['measurements'] = $this->measures->return_vehicle_measurements($vehicle['pk_sub_id']);
@@ -60,6 +61,7 @@ class Vehicles extends CI_Model {
 			$car['model'] = $vehicle['model'];
 			$car['year'] = $vehicle['year'];
 			$car['images'] = $this->images->return_vehicle_images($vehicle['pk_sub_id']);
+                        $car['manuals'] = $this->manuals->return_vehicle_manuals($vehicle['pk_sub_id']);
 			$car['components'] = $this->components->return_vehicle_components_indexed($vehicle['pk_sub_id']);
                         $car['ni_measurements'] = $this->measures->return_vehicle_measurements_no_index($vehicle['pk_sub_id']);
 			$car['measurements'] = $this->measures->return_vehicle_measurements($vehicle['pk_sub_id']);

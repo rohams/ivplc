@@ -108,7 +108,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array('group', 'publications', 'contributors', 'vehicles', 'manufacturers', 'images', 'components', 'measures', 'file_parser');
+$autoload['model'] = array('group', 'publications', 'contributors', 'vehicles', 'manufacturers', 'images', 'manuals' , 'components', 'measures', 'file_parser');
 
 
 /* End of file autoload.php */

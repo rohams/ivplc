@@ -42,7 +42,17 @@
 				</ul>
 			</div>
 		<?php endforeach; ?>
-	</div>
+         </div>
+        
+        <!-- Vehicle manual -->
+        <?php if(isset($vehicle['manuals'][0]['url']) && $vehicle['manuals'][0]['url'] != NULL) : ?>          
+            <p class="note">Click on the guideline to download: 
+            <a href="<?=base_url() . substr($vehicle['manuals'][0]['url'],1);?>"><?=$vehicle['manuals'][0]['file_name'];?></a></p>
+        <?php else : ?>         
+            <p>No guideline exists.</p>
+        <?php endif; ?>
+        
+       
 <?php else : ?>
 
 	<p>Vehicle doesn't exist. <a href="<?=site_url();?>measurements">Back</a></p>

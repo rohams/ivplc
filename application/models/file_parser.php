@@ -19,6 +19,20 @@ class File_Parser extends CI_Model {
 	    return $images;
         }
     }
+    
+    function manual_parser(){
+        if(isset($_FILES['manual'])){
+             foreach($_FILES['manual'] as $key => $file) :
+	        $i = 0;
+	        foreach ($file as $item) :
+	            $manuals[$i][$key] = $item;
+	            $i++;
+	        endforeach;
+	    endforeach;
+	
+	    return $manuals;
+        }
+    }
 
     function components_parser(){
         if(isset($_FILES['component'])){

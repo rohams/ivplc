@@ -11,7 +11,15 @@ $(document).ready(function(){
             }
             return false; 
 	});
+     
+/*EDIT FORM REMOVE FILES*/
 
+     $('form input[type=button][name=delete0]').click(function(){ 
+        $append= '<input type="file" name="manual[]"/>';                   
+        $('#mnl1').append($append);
+        $('#manual_1').remove();
+        return false; 
+    });   
    
      $('form input[type=button][name=delete1]').click(function(){ 
         $append= '<input type="file" name="image[]"/>';
