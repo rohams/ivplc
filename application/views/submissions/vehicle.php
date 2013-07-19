@@ -44,6 +44,18 @@
 				</div>
 			</div>
 		<?=form_fieldset_close();?>
+                
+                
+                <!-- MANUAL -->
+		<?=form_fieldset('Guideline');?>	
+			<p class="note">Please upload the instructions on how to interprete the data.</p>
+			<div class="group" id="manual">
+				<div class="group_member" id="image1">
+					<?=form_label('Guideline', 'manual');?>
+					<?=form_upload(array('name'=>'manual'));?>
+				</div>
+			</div>
+		<?=form_fieldset_close();?>
 
 
 		<!-- COMPONENTS -->

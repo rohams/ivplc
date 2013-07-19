@@ -380,23 +380,6 @@ INSERT INTO `vehicles` (`pk_sub_id`, `vehicle_id`, `revision`, `fk_contributor_i
 (351, 36, 4, 4, 13, 'Civic', 2000, '2013-07-17 23:38:58', 3, ''),
 (352, 3, 1, 4, 32, 'Sunfire', 2001, '2013-07-17 23:41:40', 1, '');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `manuals`
---
-
-CREATE TABLE `manuals` (
-  `pk_manual_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `fk_sub_id` int(11) unsigned NOT NULL,
-  `url` varchar(400) DEFAULT NULL,
-  `file_name` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`pk_manual_id`),
-  KEY `fk_sub_id` (`fk_sub_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=680 ;
-
-
-
 --
 -- Constraints for dumped tables
 --
@@ -439,11 +422,3 @@ ALTER TABLE `publications`
 ALTER TABLE `vehicles`
   ADD CONSTRAINT `vehicles_ibfk_1` FOREIGN KEY (`fk_contributor_id`) REFERENCES `contributors` (`pk_contributor_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `vehicles_ibfk_2` FOREIGN KEY (`fk_manufacturer_id`) REFERENCES `manufacturers` (`pk_manufacturer_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `manuals`
---
-ALTER TABLE `manuals`
-  ADD CONSTRAINT `manuals_ibfk_1` FOREIGN KEY (`fk_sub_id`) REFERENCES `vehicles` (`pk_sub_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-

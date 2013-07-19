@@ -130,10 +130,12 @@ class Submissions extends CI_Controller {
 					$vehicle_sub_id = $this->vehicles->create_vehicle($post);
 										
 					$img = $this->file_parser->images_parser();
+                                      //$mnl = $this->file_parser->manual_parser();
 					$cmp = $this->file_parser->components_parser();
 					$msr = $this->file_parser->measurements_parser();
 					
 					$img_error = $this->images->upload_images($vehicle_sub_id, $img);
+                                    //  $img_error = $this->manual->upload_manual($vehicle_sub_id, $mnl);
 					$comp_error = $this->components->upload_components($vehicle_sub_id, $cmp, $post['component_name']);
                                         $components = $this->components->return_vehicle_components($vehicle_sub_id);
 					$meas_error = $this->measures->upload_measurements($vehicle_sub_id, $msr, $components);
@@ -280,6 +282,7 @@ class Submissions extends CI_Controller {
                                     else:
                                         $new_sub_id = $this->vehicles->edit_this_vehicle($post);
                                     	$img = $this->file_parser->images_parser();
+                                     // $mnl = $this->file_parser->manual_parser();
 					$cmp = $this->file_parser->components_parser();
 					$msr = $this->file_parser->measurements_parser();
 					if(isset($post['orig_image_id'])){
@@ -288,6 +291,13 @@ class Submissions extends CI_Controller {
                                         else{
                                             $img_error = $this->images->upload_images($new_sub_id, $img);
                                         }
+                                        
+//                                        if(isset($post['orig_manual_id'])){                                           
+//                                            $mnl_error = $this->measures->update_manual($pk_sub_id, $new_sub_id, $mnl, $post['orig_manual_id']);
+//                                        }
+//                                        else{
+//                                            $mnl_error = $this->measures->upload_manual($new_sub_id, $mnl);
+//                                        }
                                         
                                         if(isset($post['orig_component_id'])){
                                             $comp_error=$this->components->update_components($pk_sub_id, $new_sub_id, $cmp, $post['orig_component_id'], $post['component_name']);

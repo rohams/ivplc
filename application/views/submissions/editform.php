@@ -67,6 +67,40 @@
                             var m_id = <?php echo $i; ?>;
                     </script>
 		<?=form_fieldset_close();?>
+                    
+                    <!-- MANUAL -->
+		<?=form_fieldset('Guideline');?>
+                
+
+                    <p class="note">Remove old file in order to replace it with a new file.</p>
+
+                    <div class="group" id="manual">
+                            <div class="group_member" id="manual1">
+                                <?php if(isset($vehicle['manual'])) : ?>   
+                                        <?=form_label('Guideline ', 'manual');?>                                                
+                                        <?php if($vehicle['manual']['url'] != NULL) : ?>                
+                                            <span id="m_1">
+                                                <input type="button" id="1" name="delete0" value="Remove File"><a class="manual" src="<?=base_url() . substr($manual['url'],1);?>"><?=$vehicle['manual']['file_name'];?></a>
+                                                <?=form_hidden('orig_image_id[]', $image['pk_image_id']);?>
+                                            </span>
+                                        <?php else : ?>
+                                            <span id="manual_1">
+                                                <?=form_upload(array('name'=>'manual'));?>
+                                            </span>
+                                        <?php endif;?>                                          
+                                <?php else : ?>
+                                    <div class="group_member manual" id="manual1">
+                                    <?=form_label('Guideline ', 'manual');?>  
+                                    <?=form_upload(array('Guideline'=>'manual'));?>
+                                    </div>
+                                <?php endif ?>
+                            </div>
+                    </div>
+                    <script>
+                            var m_id = <?php echo $i; ?>;
+                    </script>
+		<?=form_fieldset_close();?>
+                    
 		<!-- COMPONENTS -->
 		<?=form_fieldset('Components');?>	
 			<div class="controls">

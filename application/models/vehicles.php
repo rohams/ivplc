@@ -161,7 +161,7 @@ class Vehicles extends CI_Model {
 
 	/* ADMIN FUNCTIONS */	
 	function awaiting_approval(){
-		$query = $this->db->get_where('vehicles', array('view' => '0'));
+		$query = $this->db->query("select view from vehicles where view=0 or view=2");
 		return $query->num_rows();
 	}
 	
