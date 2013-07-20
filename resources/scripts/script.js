@@ -230,15 +230,15 @@ $(document).ready(function(){
 	});
 
 
-/* MEASUREMENTS */
-	$('#slider').nivoSlider({
-		effect: 'fade',
-		pauseOnHover: true,
-		pauseTime: 5000,
-		directionNav: false,
-		directionNavHide: true,
-		controlNav: true,
-	});
+///* MEASUREMENTS */
+//	$('#slider').nivoSlider({
+//		effect: 'fade',
+//		pauseOnHover: true,
+//		pauseTime: 5000,
+//		directionNav: false,
+//		directionNavHide: true,
+//		controlNav: true,
+//	});
 
 
 /*ADMIN GROUP*/

@@ -14,12 +14,13 @@
 	
 	
 	<!-- Photo Gallery -->
-	<div id="slider" class="nivoSlider">
+	<div>
 		<?php foreach($vehicle['images'] as $image) : ?>
-			<img src="<?=base_url() . $image['url'];?>" width="100%" height="300px" />
+                        <?php if($image['url'] != NULL) : ?>
+			<img src="<?=base_url() . $image['url'];?>" width="50%" height="50%"/>
+                        <?php endif;?>
 		<?php endforeach;?>
-	</div>
-	
+	</div>	
 	<!-- Vehicle measurements -->
 	<p class="note">Click on a component name to download the associated noise or transfer file.</p>
 	
