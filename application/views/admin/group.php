@@ -1,6 +1,6 @@
 <div class="content" id="admin-group">
 	
-	<h1 class="title">Group Information <a href="#" id="add">Add</a></h1>	
+	<h1 class="title">Group Information <a id="add">Add</a></h1>	
 	
 	<div id="adminform"><?=form_open_multipart('admin/group', array('id'=>'add_member', 'class'=>'hidden'));?>
 		<?=form_label('Photo', 'photo');?>
@@ -37,51 +37,54 @@
 			</tr></thead>
 			<tbody>
 			
-			<?php foreach($supervisors as $member) : ?>	
-				<tr>
-					<td><!-- Member Image -->
-						<img src="<?=base_url() . substr($member['url'],1);?>"/>
-					</td>
-					<td><!-- Member name -->
-						<p><?=$member['name'];?></p>
-					</td>
-					<td><!-- email -->
-						<p><a href="mailto:<?=$member['email'];?>"><?=$member['email'];?></a></p>					
-					</td>
-					<td><!-- Member Bio -->	
-						<p><?=$member['bio'];?></br></p>
-					</td>
-					<td><!-- Options -->
-						<?=form_open('admin/group');?>
-							<?=form_hidden('pk_group_id', $member['pk_group_id']);?>
-							<div id="delete"><?=form_submit('submit', 'Delete');?></div>
-						<?=form_close();?>
-					</td>
-				</tr>
-			<?php endforeach;?>
-			
-			<?php foreach($assistants as $member) : ?>
-				<tr>
-					<td><!-- Member Image -->
-						<img src="<?=base_url() . substr($member['url'],1);?>"/>
-					</td>
-					<td><!-- Member name, email -->
-						<p><?=$member['name'];?></p>
-					</td>
-					<td><!-- email -->
-						<p><a href="mailto:<?=$member['email'];?>"><?=$member['email'];?></a></p>					
-					</td>
-					<td><!-- Member Bio -->	
-					<p><?=$member['bio'];?></br></p>
-					</td>
-					<td><!-- Options -->
-						<?=form_open('admin/group');?>
-							<?=form_hidden('pk_group_id', $member['pk_group_id']);?>
-							<div id="delete"><?=form_submit('submit', 'Delete');?></div>
-						<?=form_close();?>
-					</td>
-				</tr>
-			<?php endforeach;?>
+                        <?php if (isset($supervisors)): ?>
+                            <?php foreach($supervisors as $member) : ?>	
+                                    <tr>
+                                            <td><!-- Member Image -->
+                                                    <img src="<?=base_url() . substr($member['url'],1);?>"/>
+                                            </td>
+                                            <td><!-- Member name -->
+                                                    <p><?=$member['name'];?></p>
+                                            </td>
+                                            <td><!-- email -->
+                                                    <p><a href="mailto:<?=$member['email'];?>"><?=$member['email'];?></a></p>					
+                                            </td>
+                                            <td><!-- Member Bio -->	
+                                                    <p><?=$member['bio'];?></br></p>
+                                            </td>
+                                            <td><!-- Options -->
+                                                    <?=form_open('admin/group');?>
+                                                            <?=form_hidden('pk_group_id', $member['pk_group_id']);?>
+                                                            <a class="delete"><?=form_submit('submit', 'Delete');?></a>
+                                                    <?=form_close();?>
+                                            </td>
+                                    </tr>
+                            <?php endforeach;?>
+                        <?php endif; ?>
+                        <?php if (isset($assistants)): ?> 
+                            <?php foreach($assistants as $member) : ?>
+                                    <tr>
+                                            <td><!-- Member Image -->
+                                                    <img src="<?=base_url() . substr($member['url'],1);?>"/>
+                                            </td>
+                                            <td><!-- Member name, email -->
+                                                    <p><?=$member['name'];?></p>
+                                            </td>
+                                            <td><!-- email -->
+                                                    <p><a href="mailto:<?=$member['email'];?>"><?=$member['email'];?></a></p>					
+                                            </td>
+                                            <td><!-- Member Bio -->	
+                                            <p><?=$member['bio'];?></br></p>
+                                            </td>
+                                            <td><!-- Options -->
+                                                    <?=form_open('admin/group');?>
+                                                            <?=form_hidden('pk_group_id', $member['pk_group_id']);?>
+                                                            <a class="delete"><?=form_submit('submit', 'Delete');?></a>
+                                                    <?=form_close();?>
+                                            </td>
+                                    </tr>
+                            <?php endforeach;?>
+                        <?php endif; ?>
 			</tbody>
 		</table>
 	</div><!-- END DIV GROUP -->

@@ -41,8 +41,8 @@
 						<td>
 						<?=form_open('admin/publications');?>
 							<?=form_hidden('pk_pub_id', $pub['pk_pub_id']);?>
-							<div id="approve"><?=form_submit('submit', 'Approve');?></div>
-							<div id="delete"><?=form_submit('submit', 'Reject');?></div>
+							<a class="approve"><?=form_submit('submit', 'Approve');?></a>
+							<a class="delete"><?=form_submit('submit', 'Reject');?></a>
 						<?=form_close();?>
 						</td>
 					</tr>
@@ -94,7 +94,7 @@
 						<td>
 						<?=form_open('admin/publications');?>
 							<?=form_hidden('pk_pub_id', $pub['pk_pub_id']);?>
-							<div id="delete"><?=form_submit('submit', 'Delete');?></div>
+							<a class="delete"><?=form_submit('submit', 'Delete');?></a>
 						<?=form_close();?>
 						</td>
 					</tr>

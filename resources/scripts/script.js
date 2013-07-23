@@ -10,7 +10,7 @@ $(document).ready(function(){
                 return true;
             }
             return false; 
-	});
+	});      
      
 /*EDIT FORM REMOVE FILES*/
 
@@ -53,6 +53,18 @@ $(document).ready(function(){
 	$("#admin-group img").error(function(){
 		$(this).attr('src', '../../resources/styles/defaults/groups.png');
 	});
+        
+        
+/*ADMIN GROUP*/
+
+        $('#add').click(function(){
+            if($('#add_member').css('display') == 'block'){
+			$('#add_member').slideUp(300);		
+		} else {
+			$('#add_member').slideDown(300);
+		}
+
+	});        
 	
 	
 /* AUTHORS INCR/DECR*/
@@ -98,6 +110,17 @@ $(document).ready(function(){
 		return false;
 	});
 
+/*Agree to Terms and Conditions before Submit*/
+	$('#confirm').click(function(){
+		$('form#submit_general').animate({'opacity':'1'}).css({'cursor':'pointer'});
+	});
+
+
+/* UPDATE HEADERS */
+	$('input[name="component_name[]"]').live('keyup', function(){
+		$modifier = $(this).parents('.group_member').attr('id');
+		$('.'+$modifier).html($(this).val());
+	});
 
 /* IMAGES INCR?DECR */
 	$imgCounter = m_id;
@@ -217,38 +240,5 @@ $(document).ready(function(){
 		return false;
 	});
 	
-	/*Agree to Terms and Conditions before Submit*/
-	$('#confirm').click(function(){
-		$('form#submit_general').animate({'opacity':'1'}).css({'cursor':'pointer'});
-	});
-
-
-	/* UPDATE HEADERS */
-	$('input[name="component_name[]"]').live('keyup', function(){
-		$modifier = $(this).parents('.group_member').attr('id');
-		$('.'+$modifier).html($(this).val());
-	});
-
-
-///* MEASUREMENTS */
-//	$('#slider').nivoSlider({
-//		effect: 'fade',
-//		pauseOnHover: true,
-//		pauseTime: 5000,
-//		directionNav: false,
-//		directionNavHide: true,
-//		controlNav: true,
-//	});
-
-
-/*ADMIN GROUP*/
-
-	$('#add').click(function(){
-		if($('#add_member').css('display') == 'block'){
-			$('#add_member').slideUp(300);		
-		} else {
-			$('#add_member').slideDown(300);
-		}
-	});
 
 });
